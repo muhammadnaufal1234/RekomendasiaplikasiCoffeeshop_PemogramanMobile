@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- Indonesian Flag Icon (Top Right) -->
+    <ImageView
+        android:id="@+id/flag_icon"
+        android:layout_width="48dp"
+        android:layout_height="32dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="Bendera Indonesia"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo_bendera" />
+
+    <!-- Main Content Container -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!-- Coffee Cup Icon -->
+        <ImageView
+            android:id="@+id/coffee_icon"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="32dp"
+            android:contentDescription="Coffee Cup Icon"
+            android:src="@drawable/coffee_logo" />
+
+        <!-- App Name -->
+        <TextView
+            android:id="@+id/app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="MONOKROM COFFEE"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05" />
+
+        <!-- Location Icon and Text -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/location_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="Lokasi"
+                android:src="@android:drawable/ic_menu_mylocation"
+                android:tint="#000000" />
+
+            <TextView
+                android:id="@+id/location_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mendeteksi lokasi..."
+                android:textColor="#6D4C41"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Get Started Button -->
+        <Button
+            android:id="@+id/btn_get_started"
+            android:layout_width="200dp"
+            android:layout_height="56dp"
+            android:background="@drawable/button_background"
+            android:text="Get Started"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+    </LinearLayout>
+
+</RelativeLayout>

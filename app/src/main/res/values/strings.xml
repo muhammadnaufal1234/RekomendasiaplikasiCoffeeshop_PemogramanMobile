@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MONOKROM COFFEE</string>
+    <string name="app_logo">App Logo</string>
+    <string name="tagline">Your Daily Coffee Companion</string>
+    <string name="get_started">Get Started</string>
+    <string name="detecting_location">Detecting location…</string>
+    <string name="welcome_message">Welcome to Monokrom Coffee</string>
+    <string name="language_flag">Language Flag</string>
+    <string name="location_icon">Location Icon</string>
+</resources>
+
+

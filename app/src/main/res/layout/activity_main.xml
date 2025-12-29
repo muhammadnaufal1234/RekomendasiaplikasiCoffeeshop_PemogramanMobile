@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <!-- Header Section -->
+    <RelativeLayout
+        android:id="@+id/header_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:padding="16dp"
+        android:elevation="4dp">
+
+        <!-- Welcome Text (tanpa tombol back) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hi Welcome"
+                android:textColor="#666666"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kenangan✨"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <!-- Search Bar BISA DIKETIK -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/search_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_section"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/ic_search"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_search"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="Search" />
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="Search"
+                android:textColorHint="#999999"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:padding="12dp"
+                android:inputType="text"
+                android:imeOptions="actionSearch"
+                android:maxLines="1" />
+
+            <ImageView
+                android:id="@+id/btn_clear_search"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_clear"
+                android:layout_marginEnd="12dp"
+                android:visibility="gone"
+                android:contentDescription="Clear" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- ScrollView untuk konten -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/search_card"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
+
+            <!-- Banner Slider -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_margin="16dp">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/banner_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <!-- Dots Indicator -->
+                <LinearLayout
+                    android:id="@+id/dots_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="12dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp"
+                    android:background="@drawable/dots_background"
+                    android:gravity="center" />
+
+            </RelativeLayout>
+
+            <!-- No Results Message -->
+            <TextView
+                android:id="@+id/tv_no_results"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:text="Tidak ada hasil"
+                android:textColor="#999999"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:visibility="gone" />
+
+            <!-- Coffee Shop List -->
+            <LinearLayout
+                android:id="@+id/coffee_list_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <!-- Kenangan Coffee Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_kenangan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="3dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp">
+
+                        <ImageView
+                            android:id="@+id/logo_kenangan"
+                            android:layout_width="120dp"
+                            android:layout_height="80dp"
+                            android:layout_alignParentStart="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/logo_kopikenangan"
+                            android:contentDescription="Kenangan Coffee" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/logo_kenangan"
+                            android:layout_marginStart="12dp"
+                            android:layout_centerVertical="true"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kenangan Coffee"
+                                android:textColor="#000000"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="⭐4.9"
+                                android:textSize="12sp"
+                                android:layout_marginTop="4dp" />
+
+                            <Button
+                                android:id="@+id/btn_desc_kenangan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="32dp"
+                                android:text="Deskripsi"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp"
+                                android:background="@drawable/btn_brown"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="16dp"
+                                android:layout_marginTop="8dp"
+                                android:textAllCaps="false" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Starbucks Coffee Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_starbucks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="3dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp">
+
+                        <ImageView
+                            android:id="@+id/logo_starbucks"
+                            android:layout_width="120dp"
+                            android:layout_height="80dp"
+                            android:layout_alignParentStart="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/logo_starbuck"
+                            android:contentDescription="Starbucks Coffee" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/logo_starbucks"
+                            android:layout_marginStart="12dp"
+                            android:layout_centerVertical="true"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Starbucks Coffee"
+                                android:textColor="#000000"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="⭐⭐⭐⭐⭐"
+                                android:textSize="12sp"
+                                android:layout_marginTop="4dp" />
+
+                            <Button
+                                android:id="@+id/btn_desc_starbucks"
+                                android:layout_width="wrap_content"
+                                android:layout_height="32dp"
+                                android:text="Deskripsi"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp"
+                                android:background="@drawable/btn_green"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="16dp"
+                                android:layout_marginTop="8dp"
+                                android:textAllCaps="false" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Tomoro Coffee Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_tomoro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="3dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp">
+
+                        <ImageView
+                            android:id="@+id/img_tomoro"
+                            android:layout_width="120dp"
+                            android:layout_height="80dp"
+                            android:layout_alignParentStart="true"
+                            android:scaleType="centerCrop"
+                            android:src="@mipmap/ic_launcher"
+                            android:contentDescription="Tomoro Coffee" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/img_tomoro"
+                            android:layout_marginStart="12dp"
+                            android:layout_centerVertical="true"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tomoro Coffee"
+                                android:textColor="#000000"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="⭐⭐⭐⭐"
+                                android:textSize="12sp"
+                                android:layout_marginTop="4dp" />
+
+                            <Button
+                                android:id="@+id/btn_desc_tomoro"
+                                android:layout_width="wrap_content"
+                                android:layout_height="32dp"
+                                android:text="Deskripsi"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp"
+                                android:background="@drawable/btn_orange"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="16dp"
+                                android:layout_marginTop="8dp"
+                                android:textAllCaps="false" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Janji Jiwa Coffee Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_janjijiwa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="3dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp">
+
+                        <ImageView
+                            android:id="@+id/img_janjijiwa"
+                            android:layout_width="120dp"
+                            android:layout_height="80dp"
+                            android:layout_alignParentStart="true"
+                            android:scaleType="centerCrop"
+                            android:src="@mipmap/ic_launcher"
+                            android:contentDescription="Janji Jiwa Coffee" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/img_janjijiwa"
+                            android:layout_marginStart="12dp"
+                            android:layout_centerVertical="true"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Janji Jiwa Coffee"
+                                android:textColor="#000000"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="⭐⭐⭐⭐"
+                                android:textSize="12sp"
+                                android:layout_marginTop="4dp" />
+
+                            <Button
+                                android:id="@+id/btn_desc_janjijiwa"
+                                android:layout_width="wrap_content"
+                                android:layout_height="32dp"
+                                android:text="Deskripsi"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp"
+                                android:background="@drawable/btn_red"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="16dp"
+                                android:layout_marginTop="8dp"
+                                android:textAllCaps="false" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Point Coffee Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_point"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="3dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp">
+
+                        <ImageView
+                            android:id="@+id/img_point"
+                            android:layout_width="120dp"
+                            android:layout_height="80dp"
+                            android:layout_alignParentStart="true"
+                            android:scaleType="centerCrop"
+                            android:src="@mipmap/ic_launcher"
+                            android:contentDescription="Point Coffee" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/img_point"
+                            android:layout_marginStart="12dp"
+                            android:layout_centerVertical="true"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Point Coffee"
+                                android:textColor="#000000"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="⭐⭐⭐⭐"
+                                android:textSize="12sp"
+                                android:layout_marginTop="4dp" />
+
+                            <Button
+                                android:id="@+id/btn_desc_point"
+                                android:layout_width="wrap_content"
+                                android:layout_height="32dp"
+                                android:text="Deskripsi"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp"
+                                android:background="@drawable/btn_blue"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="16dp"
+                                android:layout_marginTop="8dp"
+                                android:textAllCaps="false" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
