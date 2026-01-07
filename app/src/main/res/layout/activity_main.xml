@@ -32,7 +32,7 @@
                 android:id="@+id/tv_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kenangan✨"
+                android:text="Monokrom Coffee"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -269,7 +269,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="⭐⭐⭐⭐⭐"
+                                android:text="⭐5.0"
                                 android:textSize="12sp"
                                 android:layout_marginTop="4dp" />
 
@@ -313,7 +313,7 @@
                             android:layout_height="80dp"
                             android:layout_alignParentStart="true"
                             android:scaleType="centerCrop"
-                            android:src="@mipmap/ic_launcher"
+                            android:src="@drawable/logo_tomoro"
                             android:contentDescription="Tomoro Coffee" />
 
                         <LinearLayout
@@ -335,7 +335,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="⭐⭐⭐⭐"
+                                android:text="⭐3.9"
                                 android:textSize="12sp"
                                 android:layout_marginTop="4dp" />
 
@@ -379,7 +379,7 @@
                             android:layout_height="80dp"
                             android:layout_alignParentStart="true"
                             android:scaleType="centerCrop"
-                            android:src="@mipmap/ic_launcher"
+                            android:src="@drawable/logo_janjijiwa"
                             android:contentDescription="Janji Jiwa Coffee" />
 
                         <LinearLayout
@@ -401,7 +401,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="⭐⭐⭐⭐"
+                                android:text="⭐4.8"
                                 android:textSize="12sp"
                                 android:layout_marginTop="4dp" />
 
@@ -445,7 +445,7 @@
                             android:layout_height="80dp"
                             android:layout_alignParentStart="true"
                             android:scaleType="centerCrop"
-                            android:src="@mipmap/ic_launcher"
+                            android:src="@drawable/logo_point"
                             android:contentDescription="Point Coffee" />
 
                         <LinearLayout
@@ -467,7 +467,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="⭐⭐⭐⭐"
+                                android:text="⭐4.6"
                                 android:textSize="12sp"
                                 android:layout_marginTop="4dp" />
 

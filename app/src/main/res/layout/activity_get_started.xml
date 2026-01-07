@@ -15,7 +15,7 @@
         android:layout_marginEnd="16dp"
         android:contentDescription="Bendera Indonesia"
         android:scaleType="fitCenter"
-        android:src="@drawable/logo_bendera" />
+        android:src="@drawable/bendera_indo" />
 
     <!-- Main Content Container -->
     <LinearLayout

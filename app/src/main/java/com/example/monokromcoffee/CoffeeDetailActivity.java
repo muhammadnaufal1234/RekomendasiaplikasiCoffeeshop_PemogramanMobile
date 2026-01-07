@@ -173,222 +173,222 @@ public class CoffeeDetailActivity extends AppCompatActivity {
     }
 
     private void loadKenanganData() {
-        imgBanner.setImageResource(R.mipmap.ic_launcher);
+        imgBanner.setImageResource(R.drawable.logo_kopikenangan);
         tvDescription.setText("Kenangan Coffee adalah coffee shop modern dengan konsep grab and go. Menyajikan berbagai jenis kopi berkualitas dengan harga terjangkau. Kenangan Coffee memiliki banyak cabang di Indonesia dan selalu ramai dikunjungi.");
 
         // HOT COFFEE (Menu 1-3)
-        imgMenu1.setImageResource(R.mipmap.ic_launcher);
-        tvMenu1.setText("Caramel Latte");
+        imgMenu1.setImageResource(R.drawable.kenangan_americanohot);
+        tvMenu1.setText("Milo kenangan");
         tvPrice1.setText("20k");
 
-        imgMenu2.setImageResource(R.mipmap.ic_launcher);
-        tvMenu2.setText("Kopi Kenangan Mantan");
+        imgMenu2.setImageResource(R.drawable.kenangan_lattehot);
+        tvMenu2.setText("Caffe Latte");
         tvPrice2.setText("15k");
 
-        imgMenu3.setImageResource(R.mipmap.ic_launcher);
-        tvMenu3.setText("Kopi Susu Tetangga");
+        imgMenu3.setImageResource(R.drawable.kenangan_carramelhot);
+        tvMenu3.setText("Carramel latte");
         tvPrice3.setText("18k");
 
         // ICE COFFEE (Menu 4-6)
-        imgMenu4.setImageResource(R.mipmap.ic_launcher);
-        tvMenu4.setText("Es Kopi Susu Kenangan");
+        imgMenu4.setImageResource(R.drawable.kenangan_cappucino);
+        tvMenu4.setText("Cappucino Coffee");
         tvPrice4.setText("18k");
 
-        imgMenu5.setImageResource(R.mipmap.ic_launcher);
-        tvMenu5.setText("Iced Mixchoco");
+        imgMenu5.setImageResource(R.drawable.kenangan_caffelatte);
+        tvMenu5.setText("Caffe Latte");
         tvPrice5.setText("20k");
 
-        imgMenu6.setImageResource(R.mipmap.ic_launcher);
-        tvMenu6.setText("Avocado Coffee");
+        imgMenu6.setImageResource(R.drawable.kenangan_hazelnut);
+        tvMenu6.setText("Hazelnut Coffee");
         tvPrice6.setText("23k");
 
         // NON COFFEE (Menu 7-9)
-        imgMenu7.setImageResource(R.mipmap.ic_launcher);
-        tvMenu7.setText("Red Velvet Latte");
+        imgMenu7.setImageResource(R.drawable.kenagan_milo);
+        tvMenu7.setText("Kenangan Milo");
         tvPrice7.setText("22k");
 
-        imgMenu8.setImageResource(R.mipmap.ic_launcher);
-        tvMenu8.setText("Matcha Latte");
+        imgMenu8.setImageResource(R.drawable.cokelat_kenangan);
+        tvMenu8.setText("Chocolate Kenangan");
         tvPrice8.setText("21k");
 
-        imgMenu9.setImageResource(R.mipmap.ic_launcher);
-        tvMenu9.setText("Chocolate");
+        imgMenu9.setImageResource(R.drawable.kenangan_matcha);
+        tvMenu9.setText("Matcha Kenangan");
         tvPrice9.setText("19k");
     }
 
     private void loadStarbucksData() {
-        imgBanner.setImageResource(R.mipmap.ic_launcher);
+        imgBanner.setImageResource(R.drawable.logo_starbuck);
         tvDescription.setText("Starbucks adalah jaringan kedai kopi terbesar di dunia yang berasal dari Seattle, Amerika Serikat. Terkenal dengan kualitas kopi premium dan suasana nyaman untuk bekerja atau bersantai. Starbucks menyajikan berbagai varian kopi dan minuman lainnya.");
 
         // HOT COFFEE (Menu 1-3)
-        imgMenu1.setImageResource(R.mipmap.ic_launcher);
-        tvMenu1.setText("Caffe Americano");
+        imgMenu1.setImageResource(R.drawable.starbuck_hotcappucino);
+        tvMenu1.setText("Coffe cappucino");
         tvPrice1.setText("35k");
 
-        imgMenu2.setImageResource(R.mipmap.ic_launcher);
-        tvMenu2.setText("Cappuccino");
+        imgMenu2.setImageResource(R.drawable.starbuck_hotcaramel);
+        tvMenu2.setText("Coffe Caramel");
         tvPrice2.setText("40k");
 
-        imgMenu3.setImageResource(R.mipmap.ic_launcher);
-        tvMenu3.setText("Caffe Latte");
+        imgMenu3.setImageResource(R.drawable.starbuck_hotmachiato);
+        tvMenu3.setText("Salted Machiato");
         tvPrice3.setText("42k");
 
         // ICE COFFEE (Menu 4-6)
-        imgMenu4.setImageResource(R.mipmap.ic_launcher);
-        tvMenu4.setText("Iced Caramel Macchiato");
+        imgMenu4.setImageResource(R.drawable.starbuck_pistachio);
+        tvMenu4.setText("Coffe Pistachio");
         tvPrice4.setText("50k");
 
-        imgMenu5.setImageResource(R.mipmap.ic_launcher);
-        tvMenu5.setText("Iced Mocha");
+        imgMenu5.setImageResource(R.drawable.starbuck_cappucino);
+        tvMenu5.setText("Coffe Cappucino");
         tvPrice5.setText("48k");
 
-        imgMenu6.setImageResource(R.mipmap.ic_launcher);
-        tvMenu6.setText("Cold Brew");
+        imgMenu6.setImageResource(R.drawable.starbuck_salted);
+        tvMenu6.setText("Coffe Salted Caramel");
         tvPrice6.setText("45k");
 
         // NON COFFEE (Menu 7-9)
-        imgMenu7.setImageResource(R.mipmap.ic_launcher);
-        tvMenu7.setText("Green Tea Latte");
+        imgMenu7.setImageResource(R.drawable.starbuck_blackberrysmoothie);
+        tvMenu7.setText("blackberry smoothie");
         tvPrice7.setText("44k");
 
-        imgMenu8.setImageResource(R.mipmap.ic_launcher);
-        tvMenu8.setText("Chocolate Frappuccino");
+        imgMenu8.setImageResource(R.drawable.starbuck_cokelat);
+        tvMenu8.setText("Chocolate");
         tvPrice8.setText("52k");
 
-        imgMenu9.setImageResource(R.mipmap.ic_launcher);
-        tvMenu9.setText("Vanilla Bean");
+        imgMenu9.setImageResource(R.drawable.starbuck_matcha);
+        tvMenu9.setText("Matcha Latte");
         tvPrice9.setText("46k");
     }
 
     private void loadTomoroData() {
-        imgBanner.setImageResource(R.mipmap.ic_launcher);
+        imgBanner.setImageResource(R.drawable.logo_tomoro);
         tvDescription.setText("Tomoro Coffee menawarkan kopi berkualitas tinggi dengan harga terjangkau. Fokus pada kualitas biji kopi pilihan dan pelayanan cepat. Tomoro Coffee memiliki konsep modern dan nyaman untuk bersantai atau bekerja.");
 
         // HOT COFFEE (Menu 1-3)
-        imgMenu1.setImageResource(R.mipmap.ic_launcher);
+        imgMenu1.setImageResource(R.drawable.tomoro_hotamericano);
         tvMenu1.setText("Kopi Hitam");
         tvPrice1.setText("12k");
 
-        imgMenu2.setImageResource(R.mipmap.ic_launcher);
-        tvMenu2.setText("Espresso");
+        imgMenu2.setImageResource(R.drawable.tomoro_hotcaramel);
+        tvMenu2.setText("Caramel Coffe");
         tvPrice2.setText("15k");
 
-        imgMenu3.setImageResource(R.mipmap.ic_launcher);
-        tvMenu3.setText("Cafe Latte");
+        imgMenu3.setImageResource(R.drawable.tomoro_hotlatte);
+        tvMenu3.setText("Coffee Latte");
         tvPrice3.setText("18k");
 
         // ICE COFFEE (Menu 4-6)
-        imgMenu4.setImageResource(R.mipmap.ic_launcher);
+        imgMenu4.setImageResource(R.drawable.tomoro_kopisusu);
         tvMenu4.setText("Es Kopi Susu Gula Aren");
         tvPrice4.setText("17k");
 
-        imgMenu5.setImageResource(R.mipmap.ic_launcher);
+        imgMenu5.setImageResource(R.drawable.tomoro_americano);
         tvMenu5.setText("Iced Americano");
         tvPrice5.setText("16k");
 
-        imgMenu6.setImageResource(R.mipmap.ic_launcher);
+        imgMenu6.setImageResource(R.drawable.tomoro_caramel);
         tvMenu6.setText("Vietnamese Coffee");
         tvPrice6.setText("19k");
 
         // NON COFFEE (Menu 7-9)
-        imgMenu7.setImageResource(R.mipmap.ic_launcher);
-        tvMenu7.setText("Teh Tarik");
+        imgMenu7.setImageResource(R.drawable.tomoro_cokelatjelly);
+        tvMenu7.setText("Chocolate Milk");
         tvPrice7.setText("14k");
 
-        imgMenu8.setImageResource(R.mipmap.ic_launcher);
-        tvMenu8.setText("Chocolate Milk");
+        imgMenu8.setImageResource(R.drawable.tomoro_pawsome_orange_smoothie);
+        tvMenu8.setText("Orange Smoothie");
         tvPrice8.setText("16k");
 
-        imgMenu9.setImageResource(R.mipmap.ic_launcher);
-        tvMenu9.setText("Fresh Lemon Tea");
+        imgMenu9.setImageResource(R.drawable.tomoro_matchalatte);
+        tvMenu9.setText("Matcha Latte");
         tvPrice9.setText("15k");
     }
 
     private void loadJanjiJiwaData() {
-        imgBanner.setImageResource(R.mipmap.ic_launcher);
+        imgBanner.setImageResource(R.drawable.logo_janjijiwa);
         tvDescription.setText("Janji Jiwa adalah brand kopi lokal Indonesia yang populer. Menyediakan berbagai varian kopi dengan cita rasa nusantara yang khas. Janji Jiwa memiliki banyak cabang dan selalu berinovasi dengan menu-menu baru.");
 
         // HOT COFFEE (Menu 1-3)
-        imgMenu1.setImageResource(R.mipmap.ic_launcher);
-        tvMenu1.setText("Jiwa Jago");
+        imgMenu1.setImageResource(R.drawable.janjijiwa_hothazelnut);
+        tvMenu1.setText("Hazelnut Latte");
         tvPrice1.setText("13k");
 
-        imgMenu2.setImageResource(R.mipmap.ic_launcher);
-        tvMenu2.setText("Kopi Susu Tetangga");
+        imgMenu2.setImageResource(R.drawable.janjijiwa_americano);
+        tvMenu2.setText("Americano Coffee");
         tvPrice2.setText("14k");
 
-        imgMenu3.setImageResource(R.mipmap.ic_launcher);
-        tvMenu3.setText("Cappuccino Cincau");
+        imgMenu3.setImageResource(R.drawable.janjijiwa_caramel);
+        tvMenu3.setText("Caramel Latte");
         tvPrice3.setText("16k");
 
         // ICE COFFEE (Menu 4-6)
-        imgMenu4.setImageResource(R.mipmap.ic_launcher);
-        tvMenu4.setText("Es Kopi Susu Gula Aren");
+        imgMenu4.setImageResource(R.drawable.janjijiwa_cappucino);
+        tvMenu4.setText("Cappucino Latte");
         tvPrice4.setText("15k");
 
-        imgMenu5.setImageResource(R.mipmap.ic_launcher);
-        tvMenu5.setText("Kopi Susu Caramel");
+        imgMenu5.setImageResource(R.drawable.janjijiwa_caffelatte);
+        tvMenu5.setText("Coffee Latte");
         tvPrice5.setText("18k");
 
-        imgMenu6.setImageResource(R.mipmap.ic_launcher);
-        tvMenu6.setText("Es Kopi Alpukat");
+        imgMenu6.setImageResource(R.drawable.janjijiwa_kopisusu);
+        tvMenu6.setText("Es Kopi Susu");
         tvPrice6.setText("20k");
 
         // NON COFFEE (Menu 7-9)
-        imgMenu7.setImageResource(R.mipmap.ic_launcher);
-        tvMenu7.setText("Taro Latte");
+        imgMenu7.setImageResource(R.drawable.janjijiwa_creammatcha);
+        tvMenu7.setText("Matcha Latte");
         tvPrice7.setText("17k");
 
-        imgMenu8.setImageResource(R.mipmap.ic_launcher);
+        imgMenu8.setImageResource(R.drawable.janjijiwa_redvelvet);
         tvMenu8.setText("Red Velvet");
         tvPrice8.setText("19k");
 
-        imgMenu9.setImageResource(R.mipmap.ic_launcher);
-        tvMenu9.setText("Thai Tea");
+        imgMenu9.setImageResource(R.drawable.janjijiwa_cokelat);
+        tvMenu9.setText("Chocolate");
         tvPrice9.setText("16k");
     }
 
     private void loadPointData() {
-        imgBanner.setImageResource(R.mipmap.ic_launcher);
+        imgBanner.setImageResource(R.drawable.logo_point);
         tvDescription.setText("Point Coffee menawarkan kopi specialty dengan biji kopi pilihan. Dikenal dengan barista profesional dan suasana cozy yang nyaman. Point Coffee fokus pada kualitas dan pengalaman minum kopi yang sempurna.");
 
         // HOT COFFEE (Menu 1-3)
-        imgMenu1.setImageResource(R.mipmap.ic_launcher);
-        tvMenu1.setText("Single Origin");
+        imgMenu1.setImageResource(R.drawable.point_hotcappucino);
+        tvMenu1.setText("Cappucino Latte");
         tvPrice1.setText("28k");
 
-        imgMenu2.setImageResource(R.mipmap.ic_launcher);
-        tvMenu2.setText("Flat White");
+        imgMenu2.setImageResource(R.drawable.point_hotmarshmallowscoffee);
+        tvMenu2.setText("Marshmallow Coffee");
         tvPrice2.setText("30k");
 
-        imgMenu3.setImageResource(R.mipmap.ic_launcher);
-        tvMenu3.setText("Piccolo Latte");
+        imgMenu3.setImageResource(R.drawable.point_hotcaramel);
+        tvMenu3.setText("Caramel Latte");
         tvPrice3.setText("25k");
 
         // ICE COFFEE (Menu 4-6)
-        imgMenu4.setImageResource(R.mipmap.ic_launcher);
-        tvMenu4.setText("Iced Long Black");
+        imgMenu4.setImageResource(R.drawable.point_caffelatte);
+        tvMenu4.setText("Coffee Latte");
         tvPrice4.setText("27k");
 
-        imgMenu5.setImageResource(R.mipmap.ic_launcher);
-        tvMenu5.setText("Iced Latte");
+        imgMenu5.setImageResource(R.drawable.point_caramel);
+        tvMenu5.setText("Caramel Latte");
         tvPrice5.setText("29k");
 
-        imgMenu6.setImageResource(R.mipmap.ic_launcher);
-        tvMenu6.setText("Affogato");
+        imgMenu6.setImageResource(R.drawable.point_palmsugar);
+        tvMenu6.setText("Palm Sugar");
         tvPrice6.setText("32k");
 
         // NON COFFEE (Menu 7-9)
-        imgMenu7.setImageResource(R.mipmap.ic_launcher);
+        imgMenu7.setImageResource(R.drawable.point_matcha);
         tvMenu7.setText("Matcha Premium");
         tvPrice7.setText("30k");
 
-        imgMenu8.setImageResource(R.mipmap.ic_launcher);
-        tvMenu8.setText("Hot Chocolate");
+        imgMenu8.setImageResource(R.drawable.point_creamandcookies);
+        tvMenu8.setText("Cream Cookies");
         tvPrice8.setText("26k");
 
-        imgMenu9.setImageResource(R.mipmap.ic_launcher);
-        tvMenu9.setText("Lemon Yuzu");
+        imgMenu9.setImageResource(R.drawable.point_creamoreomatcha);
+        tvMenu9.setText("Cream Oreo Matcha");
         tvPrice9.setText("28k");
     }
 

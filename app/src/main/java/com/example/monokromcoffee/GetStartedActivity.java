@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GetStartedActivity extends AppCompatActivity {
@@ -14,6 +15,21 @@ public class GetStartedActivity extends AppCompatActivity {
     private TextView locationText;
     private Button getStartedButton;
     private ImageView flagIcon;
+    private String selectedCountry = "Indonesia";
+    private String selectedCity = "Kabupaten Bekasi";
+
+    // Data 3 negara
+    private String[] countries = {
+            "Indonesia - Kabupaten Bekasi",
+            "Singapore - Singapore",
+            "Malaysia - Kuala Lumpur"
+    };
+
+    private int[] countryFlags = {
+            R.drawable.bendera_indo,      // Indonesia - PERHATIKAN KOMA INI
+            R.drawable.logo_singapore,    // Singapore - PERHATIKAN KOMA INI
+            R.drawable.logo_malaysia      // Malaysia - baris terakhir tidak perlu koma
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +41,25 @@ public class GetStartedActivity extends AppCompatActivity {
         locationText = findViewById(R.id.location_text);
         getStartedButton = findViewById(R.id.btn_get_started);
 
-        // Set Indonesian flag
-        flagIcon.setImageResource(R.drawable.logo_bendera);
+        // Set default flag dan lokasi
+        flagIcon.setImageResource(R.drawable.bendera_indo);
+        locationText.setText("Kabupaten Bekasi, Indonesia");
 
-        // Set lokasi statis
-        locationText.setText("Cikarang, Indonesia");
+        // Klik pada bendera untuk ganti negara
+        flagIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCountrySelectionDialog();
+            }
+        });
+
+        // Klik pada teks lokasi untuk ganti negara
+        locationText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCountrySelectionDialog();
+            }
+        });
 
         // Tombol Get Started - Pindah ke LoginActivity
         getStartedButton.setOnClickListener(new View.OnClickListener() {
@@ -37,14 +67,30 @@ public class GetStartedActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(GetStartedActivity.this, LoginActivity.class);
                 startActivity(intent);
-                finish(); // Tutup GetStartedActivity
+                finish();
             }
         });
     }
 
+    private void showCountrySelectionDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Pilih Lokasi Anda");
+        builder.setItems(countries, (dialog, which) -> {
+            // Ambil data negara yang dipilih
+            String selected = countries[which];
+            String[] parts = selected.split(" - ");
+            selectedCountry = parts[0];
+            selectedCity = parts[1];
+
+            // Update tampilan
+            locationText.setText(selectedCity + ", " + selectedCountry);
+            flagIcon.setImageResource(countryFlags[which]);
+        });
+        builder.show();
+    }
+
     @Override
     public void onBackPressed() {
-        // Disable back button agar tidak kembali ke splash screen
         super.onBackPressed();
         finishAffinity();
     }

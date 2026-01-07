@@ -138,9 +138,9 @@ public class MainActivity extends AppCompatActivity {
     private void setupBannerSlider() {
         // Add banner images
         bannerImages = new ArrayList<>();
-        bannerImages.add(R.mipmap.ic_launcher);
-        bannerImages.add(R.mipmap.ic_launcher);
-        bannerImages.add(R.mipmap.ic_launcher);
+        bannerImages.add(R.drawable.banner_enjoy);
+        bannerImages.add(R.drawable.banner_hello);
+        bannerImages.add(R.drawable.banner_today);
 
         // Setup adapter
         sliderAdapter = new BannerSliderAdapter(bannerImages);
