@@ -12,7 +12,20 @@
           "package_name": "com.example.monokromcoffee"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "126228490579-tljqldv9uo62kne6b4btm7fqnpl03oh4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.monokromcoffee",
+            "certificate_hash": "8489b32ccbbdece89b450f6386aa15662b778a59"
+          }
+        },
+        {
+          "client_id": "126228490579-4uoj1p2l8c6fos25huk98pi5b13adhq0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCebdQIJoQa9-fRw-ms1VDzJoTl0okA9rw"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126228490579-4uoj1p2l8c6fos25huk98pi5b13adhq0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

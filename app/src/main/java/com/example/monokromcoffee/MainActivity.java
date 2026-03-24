@@ -1,6 +1,7 @@
 package com.example.monokromcoffee;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -12,9 +13,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
@@ -23,8 +27,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     // UI Components
-    private ImageView btnBack, btnClearSearch;
+    private ImageView btnBack, btnClearSearch, btnSettings;
     private TextView tvUsername, tvNoResults;
+    private SharedPreferences prefs;
     private EditText etSearch;
 
     // Banner Slider
@@ -43,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnDescKenangan, btnDescStarbucks, btnDescTomoro, btnDescJanjiJiwa, btnDescPoint;
 
     // Data untuk Search
-    private String username = "Kenangan";
+    private String username = "monokrom coffee";
     private List<CardView> allCards;
     private List<String> coffeeNames;
     private int visibleCardsCount = 0;
@@ -51,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Terapkan tema (dark/light) sebelum inflate layout
+        prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        boolean isDarkMode = prefs.getBoolean("dark_mode", false);
+        if (isDarkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
 
         // Hide action bar
         if (getSupportActionBar() != null) {
@@ -87,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
     private void initializeViews() {
         // Header components
         tvUsername = findViewById(R.id.tv_username);
+        btnSettings = findViewById(R.id.btn_settings);
 
         // Search components
         etSearch = findViewById(R.id.et_search);
@@ -173,8 +188,7 @@ public class MainActivity extends AppCompatActivity {
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            );
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
             params.setMargins(8, 0, 8, 0);
 
             dotsIndicator.addView(dots[i], params);
@@ -298,6 +312,17 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+        // Settings button — buka SettingsActivity
+        if (btnSettings != null) {
+            btnSettings.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+
         // Kenangan Coffee
         if (cardKenangan != null) {
             cardKenangan.setOnClickListener(new View.OnClickListener() {
@@ -407,7 +432,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayUsername() {
         if (tvUsername != null) {
-            tvUsername.setText(username + "✨");
+            tvUsername.setText(username);
         }
     }
 

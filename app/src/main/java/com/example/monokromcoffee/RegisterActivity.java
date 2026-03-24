@@ -11,16 +11,22 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText etUsername, etEmail, etPassword, etConfirmPassword;
     private Button btnRegister;
     private TextView tvLogin;
+    private android.widget.ImageView btnBack;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        mAuth = FirebaseAuth.getInstance();
 
         // Initialize views
         etUsername = findViewById(R.id.et_username);
@@ -29,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
         etConfirmPassword = findViewById(R.id.et_confirm_password);
         btnRegister = findViewById(R.id.btn_register);
         tvLogin = findViewById(R.id.tv_login);
+        btnBack = findViewById(R.id.btn_back);
 
         // Register button click listener
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +44,11 @@ public class RegisterActivity extends AppCompatActivity {
                 registerUser();
             }
         });
+
+        // Back button
+        if (btnBack != null) {
+            btnBack.setOnClickListener(v -> finish());
+        }
 
         // Login text click listener
         tvLogin.setOnClickListener(new View.OnClickListener() {
@@ -99,13 +111,17 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        // If all validations pass, proceed with registration
-        // Here you would typically send data to your backend/database
-        Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
-
-        // Navigate to login activity
-        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-        startActivity(intent);
-        finish();
+        // Proceed with Firebase registration
+        mAuth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this, task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Registration Failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
     }
 }

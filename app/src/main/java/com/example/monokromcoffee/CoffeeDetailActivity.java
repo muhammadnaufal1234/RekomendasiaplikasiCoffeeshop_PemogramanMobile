@@ -1,5 +1,6 @@
 package com.example.monokromcoffee;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +34,9 @@ public class CoffeeDetailActivity extends AppCompatActivity {
     // List untuk menyimpan menu cards
     private List<CardView> allMenuCards;
     private List<String> menuTypes; // "hot" atau "ice"
+
+    private int themeColor = Color.parseColor("#8B4513");
+    private int themeTextColor = Color.WHITE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,15 +138,15 @@ public class CoffeeDetailActivity extends AppCompatActivity {
         // Definisikan tipe menu (hot, ice, atau non)
         // 3 Hot + 3 Ice + 3 Non = 9 menu
         menuTypes = new ArrayList<>();
-        menuTypes.add("hot");   // Menu 1 - Caramel Latte (Hot)
-        menuTypes.add("hot");   // Menu 2 - Kopi Kenangan (Hot)
-        menuTypes.add("hot");   // Menu 3 - Mantan Caramel (Hot)
-        menuTypes.add("ice");   // Menu 4 - Mocha Coffee (Ice)
-        menuTypes.add("ice");   // Menu 5 - Manischoco (Ice)
-        menuTypes.add("ice");   // Menu 6 - Avocado Coffee (Ice)
-        menuTypes.add("non");   // Menu 7 - Creamy Mancioco (Non Coffee)
-        menuTypes.add("non");   // Menu 8 - Latte (Non Coffee)
-        menuTypes.add("non");   // Menu 9 - Americano (Non Coffee)
+        menuTypes.add("hot"); // Menu 1 - Caramel Latte (Hot)
+        menuTypes.add("hot"); // Menu 2 - Kopi Kenangan (Hot)
+        menuTypes.add("hot"); // Menu 3 - Mantan Caramel (Hot)
+        menuTypes.add("ice"); // Menu 4 - Mocha Coffee (Ice)
+        menuTypes.add("ice"); // Menu 5 - Manischoco (Ice)
+        menuTypes.add("ice"); // Menu 6 - Avocado Coffee (Ice)
+        menuTypes.add("non"); // Menu 7 - Creamy Mancioco (Non Coffee)
+        menuTypes.add("non"); // Menu 8 - Latte (Non Coffee)
+        menuTypes.add("non"); // Menu 9 - Americano (Non Coffee)
     }
 
     private void loadShopData() {
@@ -155,26 +159,45 @@ public class CoffeeDetailActivity extends AppCompatActivity {
 
         switch (shopName) {
             case "Kenangan Coffee":
+                themeColor = Color.parseColor("#8B4513");
+                themeTextColor = Color.WHITE;
                 loadKenanganData();
                 break;
             case "Starbucks Coffee":
+                themeColor = Color.parseColor("#00704A");
+                themeTextColor = Color.WHITE;
                 loadStarbucksData();
                 break;
             case "Tomoro Coffee":
+                themeColor = Color.parseColor("#FF6B00");
+                themeTextColor = Color.WHITE;
                 loadTomoroData();
                 break;
             case "Janji Jiwa Coffee":
+                themeColor = Color.parseColor("#E6C280");
+                themeTextColor = Color.parseColor("#4E342E");
                 loadJanjiJiwaData();
                 break;
             case "Point Coffee":
+                themeColor = Color.parseColor("#00A859");
+                themeTextColor = Color.WHITE;
                 loadPointData();
                 break;
+        }
+
+        if (btnOke != null) {
+            btnOke.setBackgroundTintList(ColorStateList.valueOf(themeColor));
+            btnOke.setTextColor(themeTextColor);
+        }
+        if (btnCancel != null) {
+            btnCancel.setTextColor(themeColor);
         }
     }
 
     private void loadKenanganData() {
         imgBanner.setImageResource(R.drawable.logo_kopikenangan);
-        tvDescription.setText("Kenangan Coffee adalah coffee shop modern dengan konsep grab and go. Menyajikan berbagai jenis kopi berkualitas dengan harga terjangkau. Kenangan Coffee memiliki banyak cabang di Indonesia dan selalu ramai dikunjungi.");
+        tvDescription.setText(
+                "Kenangan Coffee adalah coffee shop modern dengan konsep grab and go. Menyajikan berbagai jenis kopi berkualitas dengan harga terjangkau. Kenangan Coffee memiliki banyak cabang di Indonesia dan selalu ramai dikunjungi.");
 
         // HOT COFFEE (Menu 1-3)
         imgMenu1.setImageResource(R.drawable.kenangan_americanohot);
@@ -218,7 +241,8 @@ public class CoffeeDetailActivity extends AppCompatActivity {
 
     private void loadStarbucksData() {
         imgBanner.setImageResource(R.drawable.logo_starbuck);
-        tvDescription.setText("Starbucks adalah jaringan kedai kopi terbesar di dunia yang berasal dari Seattle, Amerika Serikat. Terkenal dengan kualitas kopi premium dan suasana nyaman untuk bekerja atau bersantai. Starbucks menyajikan berbagai varian kopi dan minuman lainnya.");
+        tvDescription.setText(
+                "Starbucks adalah jaringan kedai kopi terbesar di dunia yang berasal dari Seattle, Amerika Serikat. Terkenal dengan kualitas kopi premium dan suasana nyaman untuk bekerja atau bersantai. Starbucks menyajikan berbagai varian kopi dan minuman lainnya.");
 
         // HOT COFFEE (Menu 1-3)
         imgMenu1.setImageResource(R.drawable.starbuck_hotcappucino);
@@ -262,7 +286,8 @@ public class CoffeeDetailActivity extends AppCompatActivity {
 
     private void loadTomoroData() {
         imgBanner.setImageResource(R.drawable.logo_tomoro);
-        tvDescription.setText("Tomoro Coffee menawarkan kopi berkualitas tinggi dengan harga terjangkau. Fokus pada kualitas biji kopi pilihan dan pelayanan cepat. Tomoro Coffee memiliki konsep modern dan nyaman untuk bersantai atau bekerja.");
+        tvDescription.setText(
+                "Tomoro Coffee menawarkan kopi berkualitas tinggi dengan harga terjangkau. Fokus pada kualitas biji kopi pilihan dan pelayanan cepat. Tomoro Coffee memiliki konsep modern dan nyaman untuk bersantai atau bekerja.");
 
         // HOT COFFEE (Menu 1-3)
         imgMenu1.setImageResource(R.drawable.tomoro_hotamericano);
@@ -306,7 +331,8 @@ public class CoffeeDetailActivity extends AppCompatActivity {
 
     private void loadJanjiJiwaData() {
         imgBanner.setImageResource(R.drawable.logo_janjijiwa);
-        tvDescription.setText("Janji Jiwa adalah brand kopi lokal Indonesia yang populer. Menyediakan berbagai varian kopi dengan cita rasa nusantara yang khas. Janji Jiwa memiliki banyak cabang dan selalu berinovasi dengan menu-menu baru.");
+        tvDescription.setText(
+                "Janji Jiwa adalah brand kopi lokal Indonesia yang populer. Menyediakan berbagai varian kopi dengan cita rasa nusantara yang khas. Janji Jiwa memiliki banyak cabang dan selalu berinovasi dengan menu-menu baru.");
 
         // HOT COFFEE (Menu 1-3)
         imgMenu1.setImageResource(R.drawable.janjijiwa_hothazelnut);
@@ -350,7 +376,8 @@ public class CoffeeDetailActivity extends AppCompatActivity {
 
     private void loadPointData() {
         imgBanner.setImageResource(R.drawable.logo_point);
-        tvDescription.setText("Point Coffee menawarkan kopi specialty dengan biji kopi pilihan. Dikenal dengan barista profesional dan suasana cozy yang nyaman. Point Coffee fokus pada kualitas dan pengalaman minum kopi yang sempurna.");
+        tvDescription.setText(
+                "Point Coffee menawarkan kopi specialty dengan biji kopi pilihan. Dikenal dengan barista profesional dan suasana cozy yang nyaman. Point Coffee fokus pada kualitas dan pengalaman minum kopi yang sempurna.");
 
         // HOT COFFEE (Menu 1-3)
         imgMenu1.setImageResource(R.drawable.point_hotcappucino);
@@ -410,7 +437,51 @@ public class CoffeeDetailActivity extends AppCompatActivity {
         btnOke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                // Navigate to Maps Activity
+                android.content.Intent intent = new android.content.Intent(CoffeeDetailActivity.this,
+                        MapsActivity.class);
+                intent.putExtra("shop_name", shopName);
+
+                // We can pass a specific dummy image here based on shopName to show inside the
+                // map view
+                int imageResId = R.drawable.banner_enjoy;
+                String lat = "-6.200000";
+                String lng = "106.816666";
+                String address = "Pusat Kota";
+
+                if (shopName.equals("Kenangan Coffee")) {
+                    imageResId = R.drawable.logo_kopikenangan;
+                    lat = "-6.223945";
+                    lng = "106.802113";
+                    address = "Jl. Senopati No. 34, Kebayoran Baru, Jakarta Selatan";
+                } else if (shopName.equals("Starbucks Coffee")) {
+                    imageResId = R.drawable.logo_starbuck;
+                    lat = "-6.193132";
+                    lng = "106.823126";
+                    address = "Grand Indonesia, M.H. Thamrin, Jakarta Pusat";
+                } else if (shopName.equals("Tomoro Coffee")) {
+                    imageResId = R.drawable.logo_tomoro;
+                    lat = "-6.175110";
+                    lng = "106.827153";
+                    address = "Jl. Merdeka Barat No. 12, Gambir, Jakarta Pusat";
+                } else if (shopName.equals("Janji Jiwa Coffee")) {
+                    imageResId = R.drawable.logo_janjijiwa;
+                    lat = "-6.241586";
+                    lng = "106.791558";
+                    address = "Pondok Indah Mall 1, Kebayoran Lama, Jakarta Selatan";
+                } else if (shopName.equals("Point Coffee")) {
+                    imageResId = R.drawable.logo_point;
+                    lat = "-6.188448";
+                    lng = "106.821952";
+                    address = "Jl. K.H. Wahid Hasyim No. 50, Menteng, Jakarta Pusat";
+                }
+
+                intent.putExtra("shop_image", imageResId);
+                intent.putExtra("shop_lat", lat);
+                intent.putExtra("shop_lng", lng);
+                intent.putExtra("shop_address", address);
+
+                startActivity(intent);
             }
         });
 
@@ -475,30 +546,40 @@ public class CoffeeDetailActivity extends AppCompatActivity {
     }
 
     private void updateButtonStyles() {
-        // Reset semua button ke style default
-        btnAllMenu.setBackgroundResource(R.drawable.btn_brown);
-        btnHotCoffee.setBackgroundResource(R.drawable.btn_brown);
-        btnIceCoffee.setBackgroundResource(R.drawable.btn_brown);
-        btnNonCoffee.setBackgroundResource(R.drawable.btn_brown);
+        // Reset semua button ke inactive (outline)
+        btnAllMenu.setBackgroundResource(R.drawable.btn_pill_inactive);
+        btnHotCoffee.setBackgroundResource(R.drawable.btn_pill_inactive);
+        btnIceCoffee.setBackgroundResource(R.drawable.btn_pill_inactive);
+        btnNonCoffee.setBackgroundResource(R.drawable.btn_pill_inactive);
 
-        btnAllMenu.setTextColor(Color.WHITE);
-        btnHotCoffee.setTextColor(Color.WHITE);
-        btnIceCoffee.setTextColor(Color.WHITE);
-        btnNonCoffee.setTextColor(Color.WHITE);
+        // Hapus background tint saat inactive
+        btnAllMenu.setBackgroundTintList(null);
+        btnHotCoffee.setBackgroundTintList(null);
+        btnIceCoffee.setBackgroundTintList(null);
+        btnNonCoffee.setBackgroundTintList(null);
 
-        // Highlight button yang aktif dengan warna lebih gelap
+        btnAllMenu.setTextColor(themeColor);
+        btnHotCoffee.setTextColor(themeColor);
+        btnIceCoffee.setTextColor(themeColor);
+        btnNonCoffee.setTextColor(themeColor);
+
+        // Highlight button yang aktif (filled pill)
         if (currentFilter.equals("all")) {
-            btnAllMenu.setBackgroundColor(Color.parseColor("#5D4037")); // Dark brown
-            btnAllMenu.setTextColor(Color.WHITE);
+            btnAllMenu.setBackgroundResource(R.drawable.btn_pill_active);
+            btnAllMenu.setBackgroundTintList(ColorStateList.valueOf(themeColor));
+            btnAllMenu.setTextColor(themeTextColor);
         } else if (currentFilter.equals("hot")) {
-            btnHotCoffee.setBackgroundColor(Color.parseColor("#5D4037")); // Dark brown
-            btnHotCoffee.setTextColor(Color.WHITE);
+            btnHotCoffee.setBackgroundResource(R.drawable.btn_pill_active);
+            btnHotCoffee.setBackgroundTintList(ColorStateList.valueOf(themeColor));
+            btnHotCoffee.setTextColor(themeTextColor);
         } else if (currentFilter.equals("ice")) {
-            btnIceCoffee.setBackgroundColor(Color.parseColor("#5D4037")); // Dark brown
-            btnIceCoffee.setTextColor(Color.WHITE);
+            btnIceCoffee.setBackgroundResource(R.drawable.btn_pill_active);
+            btnIceCoffee.setBackgroundTintList(ColorStateList.valueOf(themeColor));
+            btnIceCoffee.setTextColor(themeTextColor);
         } else if (currentFilter.equals("non")) {
-            btnNonCoffee.setBackgroundColor(Color.parseColor("#5D4037")); // Dark brown
-            btnNonCoffee.setTextColor(Color.WHITE);
+            btnNonCoffee.setBackgroundResource(R.drawable.btn_pill_active);
+            btnNonCoffee.setBackgroundTintList(ColorStateList.valueOf(themeColor));
+            btnNonCoffee.setTextColor(themeTextColor);
         }
     }
 
