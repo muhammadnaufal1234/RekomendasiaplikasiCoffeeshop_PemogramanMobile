@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "126228490579",
+    "project_id": "monokromcoffee-32439",
+    "storage_bucket": "monokromcoffee-32439.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126228490579:android:35d72a7be16ec7f8e419a6",
+        "android_client_info": {
+          "package_name": "com.example.monokromcoffee"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCebdQIJoQa9-fRw-ms1VDzJoTl0okA9rw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
