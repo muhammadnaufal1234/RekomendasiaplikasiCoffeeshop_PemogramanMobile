@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="32dp"
+    android:background="@color/background">
+
+    <!-- ====== HEADER dengan gradient coklat ====== -->
+    <LinearLayout
+        android:id="@+id/header_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/brown"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:gravity="center_vertical">
+
+        <!-- Welcome + Username (kiri) -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selamat Datang"
+                android:textColor="#FFE0B2"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monokrom Coffee"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- ====== SEARCH BAR ====== -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/search_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="4dp"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/surface">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="4dp">
+
+            <ImageView
+                android:id="@+id/ic_search"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_search"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="Search"
+                app:tint="@color/text_secondary" />
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="Cari coffee shop..."
+                android:textColorHint="@color/text_secondary"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:padding="12dp"
+                android:inputType="text"
+                android:imeOptions="actionSearch"
+                android:maxLines="1" />
+
+            <ImageView
+                android:id="@+id/btn_clear_search"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_clear"
+                android:layout_marginEnd="14dp"
+                android:visibility="gone"
+                android:contentDescription="Clear"
+                app:tint="@color/text_secondary" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- ====== SCROLLABLE CONTENT ====== -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="64dp">
+
+            <!-- ====== BANNER SLIDER ====== -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="4dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="5dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/banner_slider"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <LinearLayout
+                        android:id="@+id/dots_indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:padding="4dp"
+                        android:background="@drawable/dots_background"
+                        android:gravity="center" />
+                </FrameLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ====== SECTION TITLE: Coffee Shops ====== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="10dp"
+                android:gravity="center_vertical">
+
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="20dp"
+                    android:background="@color/brown" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="coffeeshop"
+                    android:textColor="@color/brown"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+
+            <!-- ====== NO RESULTS MESSAGE ====== -->
+            <TextView
+                android:id="@+id/tv_no_results"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:text="Tidak ada coffee shop ditemukan"
+                android:textColor="@color/text_secondary"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:visibility="gone" />
+
+            <!-- ====== COFFEE SHOP LIST ====== -->
+            <LinearLayout
+                android:id="@+id/coffee_list_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <!-- ===== Kenangan Coffee Card ===== -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_kenangan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="@color/cream"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="14dp"
+                        android:gravity="center_vertical">
+
+                        <!-- Logo dengan rounded corner -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="0dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/logo_kopikenangan"
+                                android:contentDescription="Kenangan Coffee" />
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Info teks -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="14dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kenangan Coffee"
+                                android:textColor="@color/brown"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kopi kekinian harga terjangkau"
+                                android:textColor="@color/light_brown"
+                                android:textSize="12sp"
+                                android:layout_marginTop="3dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="⭐ 4.9  •  Grab &amp; Go"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_secondary"
+                                android:layout_marginTop="4dp" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_desc_kenangan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="32dp"
+                                android:text="Deskripsi"
+                                android:textColor="@color/white"
+                                android:textSize="11sp"
+                                android:background="@drawable/btn_pill_active"
+                                app:backgroundTint="@color/brown"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="16dp"
+                                android:layout_marginTop="10dp"
+                                android:textAllCaps="false" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- ===== Starbucks Coffee Card ===== -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_starbucks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="@color/cream"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="14dp"
+                        android:gravity="center_vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="0dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/logo_starbuck"
+                                android:contentDescription="Starbucks Coffee" />
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="14dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Starbucks Coffee"
+                                android:textColor="@color/brown"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kopi premium internasional"
+                                android:textColor="@color/light_brown"
+                                android:textSize="12sp"
+                                android:layout_marginTop="3dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="⭐ 5.0  •  Premium"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_secondary"
+                                android:layout_marginTop="4dp" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_desc_starbucks"
+                                android:layout_width="wrap_content"
+                                android:layout_height="32dp"
+                                android:text="Deskripsi"
+                                android:textColor="@color/white"
+                                android:textSize="11sp"
+                                android:background="@drawable/btn_pill_active"
+                                app:backgroundTint="#00704A"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="16dp"
+                                android:layout_marginTop="10dp"
+                                android:textAllCaps="false" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- ===== Tomoro Coffee Card ===== -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_tomoro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="@color/cream"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="14dp"
+                        android:gravity="center_vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="0dp">
+                            <ImageView
+                                android:id="@+id/img_tomoro"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/logo_tomoro"
+                                android:contentDescription="Tomoro Coffee" />
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="14dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tomoro Coffee"
+                                android:textColor="@color/brown"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kopi modern berkualitas tinggi"
+                                android:textColor="@color/light_brown"
+                                android:textSize="12sp"
+                                android:layout_marginTop="3dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="⭐ 3.9  •  Modern"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_secondary"
+                                android:layout_marginTop="4dp" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_desc_tomoro"
+                                android:layout_width="wrap_content"
+                                android:layout_height="32dp"
+                                android:text="Deskripsi"
+                                android:textColor="@color/white"
+                                android:textSize="11sp"
+                                android:background="@drawable/btn_pill_active"
+                                app:backgroundTint="#FF6B00"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="16dp"
+                                android:layout_marginTop="10dp"
+                                android:textAllCaps="false" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- ===== Janji Jiwa Coffee Card ===== -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_janjijiwa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="@color/cream"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="14dp"
+                        android:gravity="center_vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="0dp">
+                            <ImageView
+                                android:id="@+id/img_janjijiwa"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/logo_janjijiwa"
+                                android:contentDescription="Janji Jiwa Coffee" />
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="14dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Janji Jiwa Coffee"
+                                android:textColor="@color/brown"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kopi lokal cita rasa nusantara"
+                                android:textColor="@color/light_brown"
+                                android:textSize="12sp"
+                                android:layout_marginTop="3dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="⭐ 4.8  •  Lokal"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_secondary"
+                                android:layout_marginTop="4dp" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_desc_janjijiwa"
+                                android:layout_width="wrap_content"
+                                android:layout_height="32dp"
+                                android:text="Deskripsi"
+                                android:textColor="#4E342E"
+                                android:textSize="11sp"
+                                android:background="@drawable/btn_pill_active"
+                                app:backgroundTint="#E6C280"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="16dp"
+                                android:layout_marginTop="10dp"
+                                android:textAllCaps="false" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- ===== Point Coffee Card ===== -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_point"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="@color/cream"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="14dp"
+                        android:gravity="center_vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="0dp">
+                            <ImageView
+                                android:id="@+id/img_point"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/logo_point"
+                                android:contentDescription="Point Coffee" />
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="14dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Point Coffee"
+                                android:textColor="@color/brown"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kopi specialty barista profesional"
+                                android:textColor="@color/light_brown"
+                                android:textSize="12sp"
+                                android:layout_marginTop="3dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="⭐ 4.6  •  Specialty"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_secondary"
+                                android:layout_marginTop="4dp" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_desc_point"
+                                android:layout_width="wrap_content"
+                                android:layout_height="32dp"
+                                android:text="Deskripsi"
+                                android:textColor="@color/white"
+                                android:textSize="11sp"
+                                android:background="@drawable/btn_pill_active"
+                                app:backgroundTint="#00A859"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="16dp"
+                                android:layout_marginTop="10dp"
+                                android:textAllCaps="false" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA">
+    android:background="@color/background">
 
     <!-- IN-APP MAP VIEW -->
     <org.osmdroid.views.MapView
@@ -19,7 +19,7 @@
         android:layout_margin="20dp"
         app:cardCornerRadius="24dp"
         app:cardElevation="12dp"
-        app:cardBackgroundColor="@color/white">
+        app:cardBackgroundColor="@color/surface">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 android:layout_width="40dp"
                 android:layout_height="4dp"
                 android:layout_gravity="center_horizontal"
-                android:background="#E0E0E0"
+                android:background="@color/divider"
                 android:layout_marginBottom="24dp"/>
 
             <!-- HEADER ROW -->
@@ -56,7 +56,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Nama Coffee Shop"
-                    android:textColor="#212121"
+                    android:textColor="@color/text_primary"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -65,6 +65,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_close_grey"
+                    app:tint="@color/text_secondary"
                     android:contentDescription="Close"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
@@ -92,6 +93,7 @@
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:src="@drawable/ic_location_on"
+                        app:tint="@color/text_secondary"
                         android:layout_marginEnd="8dp"
                         android:layout_marginTop="2dp"/>
                     
@@ -100,7 +102,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Jl. Utama Kopi No.1"
-                        android:textColor="#616161"
+                        android:textColor="@color/text_secondary"
                         android:textSize="14sp"
                         android:lineSpacingExtra="4dp" />
                 </LinearLayout>
@@ -116,6 +118,7 @@
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:src="@drawable/ic_access_time"
+                        app:tint="@color/text_secondary"
                         android:layout_marginEnd="8dp"
                         android:layout_marginTop="2dp"/>
                     
@@ -124,7 +127,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="08:00 - 22:00"
-                        android:textColor="#616161"
+                        android:textColor="@color/text_secondary"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>

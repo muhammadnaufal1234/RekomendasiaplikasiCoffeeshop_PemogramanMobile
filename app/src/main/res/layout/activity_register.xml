@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Create Account"
-                android:textColor="#4E342E"
+                android:textColor="@color/brown"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:fontFamily="serif"
@@ -81,7 +81,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_person"
-                    app:tint="#8D6E63" />
+                    app:tint="@color/light_brown" />
 
                 <EditText
                     android:id="@+id/et_username"
@@ -90,8 +90,8 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="Username"
-                    android:textColorHint="#B0A09A"
-                    android:textColor="#4E342E"
+                    android:textColorHint="@color/text_secondary"
+                    android:textColor="@color/text_primary"
                     android:textSize="15sp"
                     android:fontFamily="serif"
                     android:inputType="text"
@@ -115,7 +115,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_email"
-                    app:tint="#8D6E63" />
+                    app:tint="@color/light_brown" />
 
                 <EditText
                     android:id="@+id/et_email"
@@ -124,8 +124,8 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="Email"
-                    android:textColorHint="#B0A09A"
-                    android:textColor="#4E342E"
+                    android:textColorHint="@color/text_secondary"
+                    android:textColor="@color/text_primary"
                     android:textSize="15sp"
                     android:fontFamily="serif"
                     android:inputType="textEmailAddress"
@@ -149,7 +149,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_lock"
-                    app:tint="#8D6E63" />
+                    app:tint="@color/light_brown" />
 
                 <EditText
                     android:id="@+id/et_password"
@@ -158,8 +158,8 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="Password"
-                    android:textColorHint="#B0A09A"
-                    android:textColor="#4E342E"
+                    android:textColorHint="@color/text_secondary"
+                    android:textColor="@color/text_primary"
                     android:textSize="15sp"
                     android:fontFamily="serif"
                     android:inputType="textPassword"
@@ -183,7 +183,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_lock"
-                    app:tint="#8D6E63" />
+                    app:tint="@color/light_brown" />
 
                 <EditText
                     android:id="@+id/et_confirm_password"
@@ -192,8 +192,8 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="Confirm Password"
-                    android:textColorHint="#B0A09A"
-                    android:textColor="#4E342E"
+                    android:textColorHint="@color/text_secondary"
+                    android:textColor="@color/text_primary"
                     android:textSize="15sp"
                     android:fontFamily="serif"
                     android:inputType="textPassword"
@@ -229,7 +229,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Already have an account? "
-                    android:textColor="#B0A09A"
+                    android:textColor="@color/text_secondary"
                     android:textSize="13sp"
                     android:fontFamily="serif" />
 
@@ -238,7 +238,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Log in"
-                    android:textColor="#4E342E"
+                    android:textColor="@color/brown"
                     android:textSize="13sp"
                     android:textStyle="bold"
                     android:fontFamily="serif" />

@@ -20,6 +20,15 @@ public class MapsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Load theme from SharedPreferences
+        android.content.SharedPreferences sharedPreferences = getSharedPreferences("Settings", MODE_PRIVATE);
+        boolean isDarkMode = sharedPreferences.getBoolean("dark_mode", false);
+        if (isDarkMode) {
+            androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
         super.onCreate(savedInstanceState);
 
         // Penting untuk OSMDroid: set user agent
@@ -59,6 +68,9 @@ public class MapsActivity extends AppCompatActivity {
 
         // Konfigurasi Map
         map.setMultiTouchControls(true);
+        if (isDarkMode) {
+            map.getOverlayManager().getTilesOverlay().setColorFilter(org.osmdroid.views.overlay.TilesOverlay.INVERT_COLORS);
+        }
 
         double lat = -6.200000;
         double lng = 106.816666;

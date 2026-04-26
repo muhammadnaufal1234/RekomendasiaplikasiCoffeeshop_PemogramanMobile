@@ -37,7 +37,7 @@ public class BannerSliderAdapter extends RecyclerView.Adapter<BannerSliderAdapte
     static class BannerViewHolder extends RecyclerView.ViewHolder {
         ImageView bannerImage;
 
-        public BannerViewHolder(@NonNull View itemView) {
+        public BannerViewHolder(@NonNull View itemView) { 
             super(itemView);
             bannerImage = itemView.findViewById(R.id.banner_image);
         }

@@ -6,4 +6,12 @@
     <color name="brown">#4E342E</color>
     <color name="light_brown">#8D6E63</color>
     <color name="cream">#FDF8F2</color>
+
+    <!-- Theme specific colors -->
+    <color name="background">#FFFFFF</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="divider">#E0E0E0</color>
+    <color name="settings_bg">#F2F4F7</color>
 </resources>

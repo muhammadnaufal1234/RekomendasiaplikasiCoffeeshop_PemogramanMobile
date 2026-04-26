@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="splash_background">#121212</color>
+    <color name="brown">#A1887F</color> <!-- lighter brown for dark mode -->
+    <color name="light_brown">#D7CCC8</color>
+    <color name="cream">#1E1E1E</color> <!-- dark cream for dark mode surface -->
+    
+    <!-- Theme specific colors -->
+    <color name="background">#121212</color>
+    <color name="surface">#1E1E1E</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#BDBDBD</color>
+    <color name="divider">#333333</color>
+    <color name="settings_bg">#121212</color>
+</resources>

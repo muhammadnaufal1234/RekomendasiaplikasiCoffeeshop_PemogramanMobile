@@ -6,14 +6,14 @@
     android:orientation="vertical"
     android:paddingTop="32dp"
     android:paddingBottom="64dp"
-    android:background="#FFFFFF">
+    android:background="@color/background">
 
     <!-- ====== HEADER ====== -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:background="#FFFFFF"
+        android:background="@color/surface"
         android:elevation="2dp">
 
         <ImageView
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="Settings"
-            android:textColor="#000000"
+            android:textColor="@color/text_primary"
             android:textSize="18sp"
             android:textStyle="bold" />
     </RelativeLayout>
@@ -44,7 +44,7 @@
         android:layout_margin="16dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="2dp"
-        app:cardBackgroundColor="#FFFFFF">
+        app:cardBackgroundColor="@color/surface">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_lock"
-                    app:tint="#424242"
+                    app:tint="@color/text_secondary"
                     android:contentDescription="Icon" />
 
                 <TextView
@@ -76,20 +76,21 @@
                     android:layout_weight="1"
                     android:layout_marginStart="16dp"
                     android:text="Ganti Password"
-                    android:textColor="#212121"
+                    android:textColor="@color/text_primary"
                     android:textSize="15sp" />
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_chevron_right"
+                    app:tint="@color/text_secondary"
                     android:contentDescription="Arrow" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#E0E0E0"
+                android:background="@color/divider"
                 android:layout_marginStart="56dp" />
 
             <!-- Item: Theme -->
@@ -108,7 +109,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_theme"
-                    app:tint="#424242"
+                    app:tint="@color/text_secondary"
                     android:contentDescription="Icon" />
 
                 <TextView
@@ -117,7 +118,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="16dp"
                     android:text="Tema App"
-                    android:textColor="#212121"
+                    android:textColor="@color/text_primary"
                     android:textSize="15sp" />
 
                 <TextView
@@ -132,7 +133,49 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#E0E0E0"
+                android:background="@color/divider"
+                android:layout_marginStart="56dp" />
+
+            <!-- Item: Tentang Aplikasi -->
+            <LinearLayout
+                android:id="@+id/item_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_info"
+                    app:tint="@color/text_secondary"
+                    android:contentDescription="Icon" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="16dp"
+                    android:text="Tentang Aplikasi"
+                    android:textColor="@color/text_primary"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="@color/text_secondary"
+                    android:contentDescription="Arrow" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider"
                 android:layout_marginStart="56dp" />
 
             <!-- Item: Logout -->
@@ -151,6 +194,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_logout"
+                    app:tint="#F44336"
                     android:contentDescription="Icon" />
 
                 <TextView

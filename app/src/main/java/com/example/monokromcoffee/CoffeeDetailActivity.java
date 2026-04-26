@@ -15,8 +15,8 @@ import java.util.List;
 public class CoffeeDetailActivity extends AppCompatActivity {
 
     private ImageView btnBack, imgBanner;
-    private TextView tvShopName, tvDescription;
-    private Button btnAllMenu, btnHotCoffee, btnIceCoffee, btnNonCoffee, btnCancel, btnOke;
+    private TextView tvShopName, tvDescription, tvRating, tvReviewsCount, tvAddressSummary, tvAvgPrice;
+    private Button btnAllMenu, btnHotCoffee, btnIceCoffee, btnNonCoffee, btnCancel, btnOke, btnFavoriteDetail;
 
     // Menu cards
     private CardView cardMenu1, cardMenu2, cardMenu3, cardMenu4, cardMenu5, cardMenu6, cardMenu7, cardMenu8, cardMenu9;
@@ -40,6 +40,15 @@ public class CoffeeDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Load theme from SharedPreferences
+        android.content.SharedPreferences sharedPreferences = getSharedPreferences("Settings", MODE_PRIVATE);
+        boolean isDarkMode = sharedPreferences.getBoolean("dark_mode", false);
+        if (isDarkMode) {
+            androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
         super.onCreate(savedInstanceState);
 
         // Hide action bar
@@ -79,8 +88,9 @@ public class CoffeeDetailActivity extends AppCompatActivity {
         btnNonCoffee = findViewById(R.id.btn_non_coffee);
         btnCancel = findViewById(R.id.btn_cancel);
         btnOke = findViewById(R.id.btn_oke);
+        btnFavoriteDetail = findViewById(R.id.btn_favorite_detail);
 
-        // Menu cards
+        // Menu cards (using include)
         cardMenu1 = findViewById(R.id.card_menu_1);
         cardMenu2 = findViewById(R.id.card_menu_2);
         cardMenu3 = findViewById(R.id.card_menu_3);
@@ -91,36 +101,41 @@ public class CoffeeDetailActivity extends AppCompatActivity {
         cardMenu8 = findViewById(R.id.card_menu_8);
         cardMenu9 = findViewById(R.id.card_menu_9);
 
-        // Menu items
-        imgMenu1 = findViewById(R.id.img_menu_1);
-        imgMenu2 = findViewById(R.id.img_menu_2);
-        imgMenu3 = findViewById(R.id.img_menu_3);
-        imgMenu4 = findViewById(R.id.img_menu_4);
-        imgMenu5 = findViewById(R.id.img_menu_5);
-        imgMenu6 = findViewById(R.id.img_menu_6);
-        imgMenu7 = findViewById(R.id.img_menu_7);
-        imgMenu8 = findViewById(R.id.img_menu_8);
-        imgMenu9 = findViewById(R.id.img_menu_9);
+        // Menu items inside cards
+        imgMenu1 = cardMenu1.findViewById(R.id.img_menu);
+        imgMenu2 = cardMenu2.findViewById(R.id.img_menu);
+        imgMenu3 = cardMenu3.findViewById(R.id.img_menu);
+        imgMenu4 = cardMenu4.findViewById(R.id.img_menu);
+        imgMenu5 = cardMenu5.findViewById(R.id.img_menu);
+        imgMenu6 = cardMenu6.findViewById(R.id.img_menu);
+        imgMenu7 = cardMenu7.findViewById(R.id.img_menu);
+        imgMenu8 = cardMenu8.findViewById(R.id.img_menu);
+        imgMenu9 = cardMenu9.findViewById(R.id.img_menu);
 
-        tvMenu1 = findViewById(R.id.tv_menu_1);
-        tvMenu2 = findViewById(R.id.tv_menu_2);
-        tvMenu3 = findViewById(R.id.tv_menu_3);
-        tvMenu4 = findViewById(R.id.tv_menu_4);
-        tvMenu5 = findViewById(R.id.tv_menu_5);
-        tvMenu6 = findViewById(R.id.tv_menu_6);
-        tvMenu7 = findViewById(R.id.tv_menu_7);
-        tvMenu8 = findViewById(R.id.tv_menu_8);
-        tvMenu9 = findViewById(R.id.tv_menu_9);
+        tvMenu1 = cardMenu1.findViewById(R.id.tv_menu_name);
+        tvMenu2 = cardMenu2.findViewById(R.id.tv_menu_name);
+        tvMenu3 = cardMenu3.findViewById(R.id.tv_menu_name);
+        tvMenu4 = cardMenu4.findViewById(R.id.tv_menu_name);
+        tvMenu5 = cardMenu5.findViewById(R.id.tv_menu_name);
+        tvMenu6 = cardMenu6.findViewById(R.id.tv_menu_name);
+        tvMenu7 = cardMenu7.findViewById(R.id.tv_menu_name);
+        tvMenu8 = cardMenu8.findViewById(R.id.tv_menu_name);
+        tvMenu9 = cardMenu9.findViewById(R.id.tv_menu_name);
 
-        tvPrice1 = findViewById(R.id.tv_price_1);
-        tvPrice2 = findViewById(R.id.tv_price_2);
-        tvPrice3 = findViewById(R.id.tv_price_3);
-        tvPrice4 = findViewById(R.id.tv_price_4);
-        tvPrice5 = findViewById(R.id.tv_price_5);
-        tvPrice6 = findViewById(R.id.tv_price_6);
-        tvPrice7 = findViewById(R.id.tv_price_7);
-        tvPrice8 = findViewById(R.id.tv_price_8);
-        tvPrice9 = findViewById(R.id.tv_price_9);
+        tvPrice1 = cardMenu1.findViewById(R.id.tv_menu_price);
+        tvPrice2 = cardMenu2.findViewById(R.id.tv_menu_price);
+        tvPrice3 = cardMenu3.findViewById(R.id.tv_menu_price);
+        tvPrice4 = cardMenu4.findViewById(R.id.tv_menu_price);
+        tvPrice5 = cardMenu5.findViewById(R.id.tv_menu_price);
+        tvPrice6 = cardMenu6.findViewById(R.id.tv_menu_price);
+        tvPrice7 = cardMenu7.findViewById(R.id.tv_menu_price);
+        tvPrice8 = cardMenu8.findViewById(R.id.tv_menu_price);
+        tvPrice9 = cardMenu9.findViewById(R.id.tv_menu_price);
+
+        tvRating = findViewById(R.id.tv_rating);
+        tvReviewsCount = findViewById(R.id.tv_reviews_count);
+        tvAddressSummary = findViewById(R.id.tv_address_summary);
+        tvAvgPrice = findViewById(R.id.tv_avg_price);
     }
 
     private void initializeMenuLists() {
@@ -189,6 +204,10 @@ public class CoffeeDetailActivity extends AppCompatActivity {
             btnOke.setBackgroundTintList(ColorStateList.valueOf(themeColor));
             btnOke.setTextColor(themeTextColor);
         }
+        if (btnFavoriteDetail != null) {
+            btnFavoriteDetail.setBackgroundTintList(ColorStateList.valueOf(themeColor));
+            btnFavoriteDetail.setTextColor(themeTextColor);
+        }
         if (btnCancel != null) {
             btnCancel.setTextColor(themeColor);
         }
@@ -198,6 +217,10 @@ public class CoffeeDetailActivity extends AppCompatActivity {
         imgBanner.setImageResource(R.drawable.logo_kopikenangan);
         tvDescription.setText(
                 "Kenangan Coffee adalah coffee shop modern dengan konsep grab and go. Menyajikan berbagai jenis kopi berkualitas dengan harga terjangkau. Kenangan Coffee memiliki banyak cabang di Indonesia dan selalu ramai dikunjungi.");
+        tvRating.setText(" 4.8");
+        tvReviewsCount.setText(" (2.5k (450 reviews))");
+        tvAddressSummary.setText("Jl. Senopati No. 34, Jakarta Selatan");
+        tvAvgPrice.setText("Avg. Price: Rp 15k - 35k");
 
         // HOT COFFEE (Menu 1-3)
         imgMenu1.setImageResource(R.drawable.kenangan_americanohot);
@@ -243,6 +266,10 @@ public class CoffeeDetailActivity extends AppCompatActivity {
         imgBanner.setImageResource(R.drawable.logo_starbuck);
         tvDescription.setText(
                 "Starbucks adalah jaringan kedai kopi terbesar di dunia yang berasal dari Seattle, Amerika Serikat. Terkenal dengan kualitas kopi premium dan suasana nyaman untuk bekerja atau bersantai. Starbucks menyajikan berbagai varian kopi dan minuman lainnya.");
+        tvRating.setText(" 4.9");
+        tvReviewsCount.setText(" (5.2k (1.2k reviews))");
+        tvAddressSummary.setText("Grand Indonesia, Jakarta Pusat");
+        tvAvgPrice.setText("Avg. Price: Rp 45k - 80k");
 
         // HOT COFFEE (Menu 1-3)
         imgMenu1.setImageResource(R.drawable.starbuck_hotcappucino);
@@ -288,6 +315,10 @@ public class CoffeeDetailActivity extends AppCompatActivity {
         imgBanner.setImageResource(R.drawable.logo_tomoro);
         tvDescription.setText(
                 "Tomoro Coffee menawarkan kopi berkualitas tinggi dengan harga terjangkau. Fokus pada kualitas biji kopi pilihan dan pelayanan cepat. Tomoro Coffee memiliki konsep modern dan nyaman untuk bersantai atau bekerja.");
+        tvRating.setText(" 4.7");
+        tvReviewsCount.setText(" (1.8k (320 reviews))");
+        tvAddressSummary.setText("Jl. Merdeka Barat No. 12, Jakarta Pusat");
+        tvAvgPrice.setText("Avg. Price: Rp 12k - 25k");
 
         // HOT COFFEE (Menu 1-3)
         imgMenu1.setImageResource(R.drawable.tomoro_hotamericano);
@@ -333,6 +364,10 @@ public class CoffeeDetailActivity extends AppCompatActivity {
         imgBanner.setImageResource(R.drawable.logo_janjijiwa);
         tvDescription.setText(
                 "Janji Jiwa adalah brand kopi lokal Indonesia yang populer. Menyediakan berbagai varian kopi dengan cita rasa nusantara yang khas. Janji Jiwa memiliki banyak cabang dan selalu berinovasi dengan menu-menu baru.");
+        tvRating.setText(" 4.6");
+        tvReviewsCount.setText(" (3.1k (890 reviews))");
+        tvAddressSummary.setText("Pondok Indah Mall, Jakarta Selatan");
+        tvAvgPrice.setText("Avg. Price: Rp 15k - 30k");
 
         // HOT COFFEE (Menu 1-3)
         imgMenu1.setImageResource(R.drawable.janjijiwa_hothazelnut);
@@ -378,6 +413,10 @@ public class CoffeeDetailActivity extends AppCompatActivity {
         imgBanner.setImageResource(R.drawable.logo_point);
         tvDescription.setText(
                 "Point Coffee menawarkan kopi specialty dengan biji kopi pilihan. Dikenal dengan barista profesional dan suasana cozy yang nyaman. Point Coffee fokus pada kualitas dan pengalaman minum kopi yang sempurna.");
+        tvRating.setText(" 4.8");
+        tvReviewsCount.setText(" (2.2k (560 reviews))");
+        tvAddressSummary.setText("Jl. Wahid Hasyim No. 50, Jakarta Pusat");
+        tvAvgPrice.setText("Avg. Price: Rp 20k - 40k");
 
         // HOT COFFEE (Menu 1-3)
         imgMenu1.setImageResource(R.drawable.point_hotcappucino);
@@ -482,6 +521,18 @@ public class CoffeeDetailActivity extends AppCompatActivity {
                 intent.putExtra("shop_address", address);
 
                 startActivity(intent);
+            }
+        });
+
+        btnFavoriteDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate back to MainActivity and open Favorite fragment
+                android.content.Intent intent = new android.content.Intent(CoffeeDetailActivity.this, MainActivity.class);
+                intent.putExtra("target_fragment", "favorite");
+                intent.setFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP | android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                finish();
             }
         });
 

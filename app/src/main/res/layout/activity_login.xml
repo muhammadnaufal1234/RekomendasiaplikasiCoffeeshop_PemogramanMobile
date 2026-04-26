@@ -56,7 +56,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_person"
-                    app:tint="#8D6E63" />
+                    app:tint="@color/light_brown" />
 
                 <EditText
                     android:id="@+id/et_username"
@@ -65,8 +65,8 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="Full name"
-                    android:textColorHint="#B0A09A"
-                    android:textColor="#4E342E"
+                    android:textColorHint="@color/text_secondary"
+                    android:textColor="@color/text_primary"
                     android:textSize="15sp"
                     android:fontFamily="serif"
                     android:inputType="textEmailAddress"
@@ -90,7 +90,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_lock"
-                    app:tint="#8D6E63" />
+                    app:tint="@color/light_brown" />
 
                 <EditText
                     android:id="@+id/et_password"
@@ -99,8 +99,8 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="Password"
-                    android:textColorHint="#B0A09A"
-                    android:textColor="#4E342E"
+                    android:textColorHint="@color/text_secondary"
+                    android:textColor="@color/text_primary"
                     android:textSize="15sp"
                     android:fontFamily="serif"
                     android:inputType="textPassword"
@@ -130,7 +130,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="By tapping Continue, you agree to our Terms and\nacknowledge that you have read our Privacy Policy"
-                android:textColor="#B0A09A"
+                android:textColor="@color/text_secondary"
                 android:textSize="11sp"
                 android:fontFamily="serif"
                 android:gravity="center"
@@ -148,13 +148,13 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="1dp"
-                    android:background="#E0D5CF" />
+                    android:background="@color/divider" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" or Log in with "
-                    android:textColor="#B0A09A"
+                    android:textColor="@color/text_secondary"
                     android:textSize="13sp"
                     android:fontFamily="serif"
                     android:paddingHorizontal="12dp" />
@@ -163,7 +163,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="1dp"
-                    android:background="#E0D5CF" />
+                    android:background="@color/divider" />
             </LinearLayout>
 
             <!-- Social Login Icons -->
@@ -202,7 +202,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Don't have an account yet? "
-                    android:textColor="#B0A09A"
+                    android:textColor="@color/text_secondary"
                     android:textSize="13sp"
                     android:fontFamily="serif" />
 
@@ -211,7 +211,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sign up"
-                    android:textColor="#4E342E"
+                    android:textColor="@color/brown"
                     android:textSize="13sp"
                     android:textStyle="bold"
                     android:fontFamily="serif" />

@@ -63,12 +63,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MonokromCoffee" />
 
-        <!-- Settings Activity -->
-        <activity
-            android:name=".SettingsActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.MonokromCoffee" />
+
 
         <!-- Maps Activity -->
         <activity

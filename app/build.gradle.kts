@@ -1,7 +1,11 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     id("com.google.gms.google-services")
 }
+
+
 
 android {
     namespace = "com.example.monokromcoffee"
@@ -15,6 +19,18 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Baca Gemini API Key dari local.properties
+        val localProperties = Properties()
+        val localPropertiesFile = rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            localPropertiesFile.inputStream().use { localProperties.load(it) }
+        }
+        buildConfigField("String", "GEMINI_API_KEY", "\"${localProperties["GEMINI_API_KEY"] ?: ""}\"")
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {
@@ -44,8 +60,14 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-auth")
 
-    // Google Sign-In
-    implementation("com.google.android.gms:play-services-auth:21.0.0")
+    // Google Sign-In (v20.7.0 = last version with legacy GoogleSignIn/GoogleSignInClient API)
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+
+    // HTTP Client for Gemini API
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+    // JSON Parsing
+    implementation("com.google.code.gson:gson:2.10.1")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

@@ -23,6 +23,15 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Load theme from SharedPreferences
+        android.content.SharedPreferences sharedPreferences = getSharedPreferences("Settings", MODE_PRIVATE);
+        boolean isDarkMode = sharedPreferences.getBoolean("dark_mode", false);
+        if (isDarkMode) {
+            androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 

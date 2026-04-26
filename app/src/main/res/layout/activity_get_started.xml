@@ -47,7 +47,6 @@
             android:textSize="12sp" />
     </LinearLayout>
 
-    <!-- Coffee Cup Icon -->
     <ImageView
         android:id="@+id/coffee_icon"
         android:layout_width="220dp"
@@ -58,19 +57,47 @@
         app:layout_constraintBottom_toTopOf="@id/location_container"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.3" />
 
-    <!-- Location UI -->
+    <TextView
+        android:id="@+id/tv_credit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="By Muhammad Nuafal"
+        android:textColor="@color/text_secondary"
+        android:textSize="10sp"
+        android:fontFamily="serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/coffee_icon" />
+
+    <TextView
+        android:id="@+id/tv_discovery_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="40dp"
+        android:gravity="center"
+        android:text="Temukan coffee shop terbaik berdasarkan rating, lokasi, dan suasana"
+        android:textColor="@color/brown"
+        android:textSize="14sp"
+        android:fontFamily="serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_credit" />
+
     <LinearLayout
         android:id="@+id/location_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/btn_get_started"
+        app:layout_constraintBottom_toTopOf="@id/tv_explore_now"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="40dp">
+        android:layout_marginBottom="24dp">
 
         <ImageView
             android:id="@+id/location_icon"
@@ -90,6 +117,20 @@
             android:textSize="14sp"
             android:fontFamily="serif" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_explore_now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="Mulai jelajahi sekarang"
+        android:textColor="@color/brown"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:fontFamily="serif"
+        app:layout_constraintBottom_toTopOf="@id/btn_get_started"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Get Started Button -->
     <Button

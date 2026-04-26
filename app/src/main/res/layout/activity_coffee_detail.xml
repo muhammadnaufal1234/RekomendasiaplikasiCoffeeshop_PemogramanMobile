@@ -1,815 +1,438 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/splash_background"
-    android:fillViewport="true">
+    android:orientation="vertical"
+    android:background="@color/background">
 
+    <!-- ====== CUSTOM TOOLBAR / HEADER (Fixed visibility & Renamed) ====== -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="60dp"
+        android:paddingBottom="12dp"
+        android:background="@color/surface">
 
-        <!-- ====== HERO SECTION (Logo + Gradient Overlay + Back Button) ====== -->
-        <FrameLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="220dp">
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
-            <!-- Background logo / banner image -->
+            <ImageView
+                android:id="@+id/btn_back_detail"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_back"
+                app:tint="@color/text_primary"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="Back" />
+
+            <TextView
+                android:id="@+id/tv_title_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Deskripsi"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_more_vert"
+                app:tint="@color/text_primary"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="More" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- ====== BANNER IMAGE ====== -->
             <ImageView
                 android:id="@+id/img_shop_photo"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="220dp"
                 android:scaleType="centerCrop"
-                android:adjustViewBounds="false"
-                android:contentDescription="Shop Photo" />
+                android:src="@drawable/banner_enjoy"
+                android:contentDescription="Shop Banner" />
 
-            <!-- Gradient overlay gelap di bawah agar teks terbaca -->
-            <View
+            <!-- ====== SHOP INFO CARD ====== -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/gradient_hero_overlay" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="-30dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/surface">
 
-            <!-- Tombol Back (kiri atas) -->
-            <FrameLayout
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_margin="12dp"
-                android:background="#33000000"
-                android:layout_gravity="top|start"
-                android:padding="0dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-                <ImageView
-                    android:id="@+id/btn_back_detail"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_back"
-                    android:contentDescription="Back" />
-            </FrameLayout>
+                    <TextView
+                        android:id="@+id/tv_shop_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cafe Aroma"
+                        android:textColor="@color/text_primary"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
 
-            <!-- Nama toko di atas gambar (kiri bawah) -->
+                    <!-- RATING ROW -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="4dp">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_star"
+                            android:tint="@color/brown" />
+
+                        <TextView
+                            android:id="@+id/tv_rating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" 4.7"
+                            android:textColor="@color/text_primary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_reviews_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" (1.9 (120 reviews))"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_address_summary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Jl. Merdeka No. 10"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp" />
+
+                    <!-- ACTION BUTTONS -->
+                    <!-- ACTION BUTTONS -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="start"
+                        android:layout_marginTop="20dp">
+
+                        <Button
+                            android:id="@+id/btn_oke"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:minWidth="160dp"
+                            android:paddingStart="24dp"
+                            android:paddingEnd="24dp"
+                            android:text="Maps"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/btn_pill_active"
+                            app:icon="@drawable/ic_location_on"
+                            app:iconTint="@color/white"
+                            app:iconPadding="10dp"
+                            app:iconSize="18dp" />
+
+                        <Button
+                            android:id="@+id/btn_favorite_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:minWidth="140dp"
+                            android:paddingStart="24dp"
+                            android:paddingEnd="24dp"
+                            android:text="Favorite"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/btn_pill_active"
+                            app:icon="@drawable/ic_favorite"
+                            app:iconTint="@color/white"
+                            app:iconPadding="10dp"
+                            app:iconSize="18dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ====== DETAILS SECTION ====== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
                 android:orientation="vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="16dp">
+                android:padding="20dp">
 
-                <TextView
-                    android:id="@+id/tv_shop_name"
-                    android:layout_width="wrap_content"
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider" />
+
+                <!-- OPEN TIME -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Kenangan Coffee"
-                    android:textColor="#FFFFFF"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:shadowColor="#88000000"
-                    android:shadowRadius="4"
-                    android:shadowDx="0"
-                    android:shadowDy="1" />
+                    android:orientation="horizontal"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Open: 08:00 - 22.00"
+                        android:textColor="@color/text_primary"
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider" />
+
+                <!-- AVG PRICE -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp">
+                    <TextView
+                        android:id="@+id/tv_avg_price"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Avg. Price: Rp 25k - 50k"
+                        android:textColor="@color/text_primary"
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider" />
+
+                <!-- FACILITIES -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp">
+                    
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_wifi"
+                        app:tint="@color/text_secondary" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" WiFi  •  "
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_ac"
+                        app:tint="@color/text_secondary" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" AC  •  "
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_plug"
+                        app:tint="@color/text_secondary" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" Plug"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider" />
+
+                <!-- WORK SCORE -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp">
+                    
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Work-Friendly Score:"
+                        android:textColor="@color/text_primary"
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_star" app:tint="@color/brown" />
+                        <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_star" app:tint="@color/brown" />
+                        <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_star" app:tint="@color/brown" />
+                        <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_star" app:tint="@color/brown" />
+                        <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_star" app:tint="@color/divider" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider" />
             </LinearLayout>
 
-        </FrameLayout>
+            <!-- GALLERY DAN REVIEW DIHAPUS SESUAI REQUEST -->
 
-        <!-- ====== DESKRIPSI CARD ====== -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="-20dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="6dp"
-            app:cardBackgroundColor="@color/cream">
-
+            <!-- ====== DESCRIPTION (Original About Us) ====== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
-
+                android:padding="20dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tentang Kami"
                     android:textColor="@color/brown"
-                    android:textSize="13sp"
-                    android:textStyle="bold"
-                    android:letterSpacing="0.08" />
-
-                <View
-                    android:layout_width="32dp"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@color/brown" />
-
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/tv_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="Deskripsi"
-                    android:textColor="@color/light_brown"
-                    android:textSize="13sp"
-                    android:lineSpacingExtra="4dp" />
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4dp"
+                    android:justificationMode="inter_word" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
-        <!-- ====== SECTION TITLE: OUR MENU ====== -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingTop="24dp"
-            android:paddingBottom="4dp"
-            android:gravity="center_vertical">
-
-            <View
-                android:layout_width="4dp"
-                android:layout_height="20dp"
-                android:background="@color/brown" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Menu Kami"
-                android:textColor="@color/brown"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_marginStart="8dp" />
-        </LinearLayout>
-
-        <!-- ====== FILTER PILLS ====== -->
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="16dp"
-            android:scrollbars="none"
-            android:clipToPadding="false">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <!-- ALL MENU PILL -->
-                <Button
-                    android:id="@+id/btn_all_menu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:text="Semua Menu"
-                    android:textSize="12sp"
-                    android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/btn_pill_active"
-                    android:paddingStart="18dp"
-                    android:paddingEnd="18dp"
-                    android:layout_marginEnd="8dp" />
-
-                <!-- HOT COFFEE PILL -->
-                <Button
-                    android:id="@+id/btn_hot_coffee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:text="Hot Coffee"
-                    android:textSize="12sp"
-                    android:textAllCaps="false"
-                    android:textColor="@color/brown"
-                    android:background="@drawable/btn_pill_inactive"
-                    android:paddingStart="18dp"
-                    android:paddingEnd="18dp"
-                    android:layout_marginEnd="8dp" />
-
-                <!-- ICE COFFEE PILL -->
-                <Button
-                    android:id="@+id/btn_ice_coffee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:text="Ice Coffee"
-                    android:textSize="12sp"
-                    android:textAllCaps="false"
-                    android:textColor="@color/brown"
-                    android:background="@drawable/btn_pill_inactive"
-                    android:paddingStart="18dp"
-                    android:paddingEnd="18dp"
-                    android:layout_marginEnd="8dp" />
-
-                <!-- NON COFFEE PILL -->
-                <Button
-                    android:id="@+id/btn_non_coffee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:text="Non Coffee"
-                    android:textSize="12sp"
-                    android:textAllCaps="false"
-                    android:textColor="@color/brown"
-                    android:background="@drawable/btn_pill_inactive"
-                    android:paddingStart="18dp"
-                    android:paddingEnd="18dp" />
-
-            </LinearLayout>
-        </HorizontalScrollView>
-
-        <!-- ====== MENU GRID ====== -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp">
-
-            <!-- Row 1 -->
+            <!-- ====== OUR MENU (MOVED TO BOTTOM) ====== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="12dp">
+                android:orientation="vertical"
+                android:paddingTop="20dp"
+                android:background="@color/surface">
 
-                <!-- Menu 1 -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_menu_1"
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="6dp"
-                    app:cardCornerRadius="14dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="#FFFFFF"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
+                    android:text="Menu Kami"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="20dp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/img_menu_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="110dp"
-                            android:scaleType="centerCrop"
-                            android:src="@mipmap/ic_launcher"
-                            android:contentDescription="Menu" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:id="@+id/tv_menu_1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Caramel Latte"
-                                android:textColor="@color/brown"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                android:maxLines="2"
-                                android:ellipsize="end" />
-
-                            <TextView
-                                android:id="@+id/tv_price_1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="15k"
-                                android:textColor="@color/brown"
-                                android:textSize="13sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="4dp" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Menu 2 -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_menu_2"
-                    android:layout_width="0dp"
+                <!-- FILTER PILLS -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginEnd="6dp"
-                    app:cardCornerRadius="14dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="#FFFFFF"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/img_menu_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="110dp"
-                            android:scaleType="centerCrop"
-                            android:src="@mipmap/ic_launcher"
-                            android:contentDescription="Menu" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:id="@+id/tv_menu_2"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Kopi Kenangan"
-                                android:textColor="@color/brown"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                android:maxLines="2"
-                                android:ellipsize="end" />
-
-                            <TextView
-                                android:id="@+id/tv_price_2"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="12k"
-                                android:textColor="@color/brown"
-                                android:textSize="13sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="4dp" />
-                        </LinearLayout>
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:scrollbars="none"
+                    android:clipToPadding="false">
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
+                        <Button android:id="@+id/btn_all_menu" android:layout_width="wrap_content" android:layout_height="32dp" android:minHeight="0dp" android:minWidth="0dp" android:paddingStart="12dp" android:paddingEnd="12dp" android:text="Semua" android:textSize="11sp" android:textAllCaps="false" android:textColor="#FFFFFF" android:background="@drawable/btn_pill_active" android:layout_marginEnd="8dp" />
+                        <Button android:id="@+id/btn_hot_coffee" android:layout_width="wrap_content" android:layout_height="32dp" android:minHeight="0dp" android:minWidth="0dp" android:paddingStart="12dp" android:paddingEnd="12dp" android:text="Hot Coffee" android:textSize="11sp" android:textAllCaps="false" android:textColor="@color/brown" android:background="@drawable/btn_pill_inactive" android:layout_marginEnd="8dp" />
+                        <Button android:id="@+id/btn_ice_coffee" android:layout_width="wrap_content" android:layout_height="32dp" android:minHeight="0dp" android:minWidth="0dp" android:paddingStart="12dp" android:paddingEnd="12dp" android:text="Ice Coffee" android:textSize="11sp" android:textAllCaps="false" android:textColor="@color/brown" android:background="@drawable/btn_pill_inactive" android:layout_marginEnd="8dp" />
+                        <Button android:id="@+id/btn_non_coffee" android:layout_width="wrap_content" android:layout_height="32dp" android:minHeight="0dp" android:minWidth="0dp" android:paddingStart="12dp" android:paddingEnd="12dp" android:text="Non Coffee" android:textSize="11sp" android:textAllCaps="false" android:textColor="@color/brown" android:background="@drawable/btn_pill_inactive" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </HorizontalScrollView>
 
-                <!-- Menu 3 -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_menu_3"
-                    android:layout_width="0dp"
+                <!-- MENU GRID -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="6dp"
-                    app:cardCornerRadius="14dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="#FFFFFF"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
+                    android:orientation="vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="80dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/img_menu_3"
-                            android:layout_width="match_parent"
-                            android:layout_height="110dp"
-                            android:scaleType="centerCrop"
-                            android:src="@mipmap/ic_launcher"
-                            android:contentDescription="Menu" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:id="@+id/tv_menu_3"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Mantan Caramel"
-                                android:textColor="@color/brown"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                android:maxLines="2"
-                                android:ellipsize="end" />
-
-                            <TextView
-                                android:id="@+id/tv_price_3"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="18k"
-                                android:textColor="@color/brown"
-                                android:textSize="13sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="4dp" />
-                        </LinearLayout>
+                    <!-- Rows will be populated as before -->
+                    <!-- I'll keep the layout structure compatible with existing findViewByIds -->
+                    
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp" android:paddingStart="4dp" android:paddingEnd="4dp">
+                        <include layout="@layout/item_menu_detail" android:id="@+id/card_menu_1" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_margin="6dp" />
+                        <include layout="@layout/item_menu_detail" android:id="@+id/card_menu_2" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_margin="6dp" />
+                        <include layout="@layout/item_menu_detail" android:id="@+id/card_menu_3" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_margin="6dp" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
-
-            <!-- Row 2 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="12dp">
-
-                <!-- Menu 4 -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_menu_4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="6dp"
-                    app:cardCornerRadius="14dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="#FFFFFF"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/img_menu_4"
-                            android:layout_width="match_parent"
-                            android:layout_height="110dp"
-                            android:scaleType="centerCrop"
-                            android:src="@mipmap/ic_launcher"
-                            android:contentDescription="Menu" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:id="@+id/tv_menu_4"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Mocha Coffee"
-                                android:textColor="@color/brown"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                android:maxLines="2"
-                                android:ellipsize="end" />
-
-                            <TextView
-                                android:id="@+id/tv_price_4"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="16k"
-                                android:textColor="@color/brown"
-                                android:textSize="13sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="4dp" />
-                        </LinearLayout>
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp" android:paddingStart="4dp" android:paddingEnd="4dp">
+                        <include layout="@layout/item_menu_detail" android:id="@+id/card_menu_4" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_margin="6dp" />
+                        <include layout="@layout/item_menu_detail" android:id="@+id/card_menu_5" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_margin="6dp" />
+                        <include layout="@layout/item_menu_detail" android:id="@+id/card_menu_6" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_margin="6dp" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Menu 5 -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_menu_5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginEnd="6dp"
-                    app:cardCornerRadius="14dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="#FFFFFF"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/img_menu_5"
-                            android:layout_width="match_parent"
-                            android:layout_height="110dp"
-                            android:scaleType="centerCrop"
-                            android:src="@mipmap/ic_launcher"
-                            android:contentDescription="Menu" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:id="@+id/tv_menu_5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Manischoco"
-                                android:textColor="@color/brown"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                android:maxLines="2"
-                                android:ellipsize="end" />
-
-                            <TextView
-                                android:id="@+id/tv_price_5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="20k"
-                                android:textColor="@color/brown"
-                                android:textSize="13sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="4dp" />
-                        </LinearLayout>
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp" android:paddingStart="4dp" android:paddingEnd="4dp">
+                        <include layout="@layout/item_menu_detail" android:id="@+id/card_menu_7" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_margin="6dp" />
+                        <include layout="@layout/item_menu_detail" android:id="@+id/card_menu_8" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_margin="6dp" />
+                        <include layout="@layout/item_menu_detail" android:id="@+id/card_menu_9" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_margin="6dp" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Menu 6 -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_menu_6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="6dp"
-                    app:cardCornerRadius="14dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="#FFFFFF"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/img_menu_6"
-                            android:layout_width="match_parent"
-                            android:layout_height="110dp"
-                            android:scaleType="centerCrop"
-                            android:src="@mipmap/ic_launcher"
-                            android:contentDescription="Menu" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:id="@+id/tv_menu_6"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Avocado Coffee"
-                                android:textColor="@color/brown"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                android:maxLines="2"
-                                android:ellipsize="end" />
-
-                            <TextView
-                                android:id="@+id/tv_price_6"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="22k"
-                                android:textColor="@color/brown"
-                                android:textSize="13sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="4dp" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
-
-            <!-- Row 3 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="16dp">
-
-                <!-- Menu 7 -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_menu_7"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="6dp"
-                    app:cardCornerRadius="14dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="#FFFFFF"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/img_menu_7"
-                            android:layout_width="match_parent"
-                            android:layout_height="110dp"
-                            android:scaleType="centerCrop"
-                            android:src="@mipmap/ic_launcher"
-                            android:contentDescription="Menu" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:id="@+id/tv_menu_7"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Creamy Mancioco"
-                                android:textColor="@color/brown"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                android:maxLines="2"
-                                android:ellipsize="end" />
-
-                            <TextView
-                                android:id="@+id/tv_price_7"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="19k"
-                                android:textColor="@color/brown"
-                                android:textSize="13sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="4dp" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Menu 8 -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_menu_8"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginEnd="6dp"
-                    app:cardCornerRadius="14dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="#FFFFFF"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/img_menu_8"
-                            android:layout_width="match_parent"
-                            android:layout_height="110dp"
-                            android:scaleType="centerCrop"
-                            android:src="@mipmap/ic_launcher"
-                            android:contentDescription="Menu" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:id="@+id/tv_menu_8"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Latte"
-                                android:textColor="@color/brown"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                android:maxLines="2"
-                                android:ellipsize="end" />
-
-                            <TextView
-                                android:id="@+id/tv_price_8"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="14k"
-                                android:textColor="@color/brown"
-                                android:textSize="13sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="4dp" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Menu 9 -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_menu_9"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="6dp"
-                    app:cardCornerRadius="14dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="#FFFFFF"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/img_menu_9"
-                            android:layout_width="match_parent"
-                            android:layout_height="110dp"
-                            android:scaleType="centerCrop"
-                            android:src="@mipmap/ic_launcher"
-                            android:contentDescription="Menu" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:id="@+id/tv_menu_9"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Americano"
-                                android:textColor="@color/brown"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                android:maxLines="2"
-                                android:ellipsize="end" />
-
-                            <TextView
-                                android:id="@+id/tv_price_9"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="13k"
-                                android:textColor="@color/brown"
-                                android:textSize="13sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="4dp" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
+    </ScrollView>
 
-        <!-- ====== BOTTOM ACTION BUTTONS ====== -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingTop="4dp"
-            android:paddingBottom="64dp"
-            android:gravity="center">
+    <!-- HIDDEN ORIGINAL BUTTONS TO KEEP COMPATIBILITY -->
+    <Button android:id="@+id/btn_cancel" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone" />
 
-            <Button
-                android:id="@+id/btn_cancel"
-                android:layout_width="0dp"
-                android:layout_height="52dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:text="Kembali"
-                android:textColor="@color/brown"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textAllCaps="false"
-                android:background="@drawable/btn_pill_inactive" />
-
-            <Button
-                android:id="@+id/btn_oke"
-                android:layout_width="0dp"
-                android:layout_height="52dp"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:text="Maps"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textAllCaps="false"
-                android:drawableStart="@drawable/ic_location_on"
-                android:drawableTint="#FFFFFF"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:background="@drawable/btn_pill_active" />
-        </LinearLayout>
-
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>
