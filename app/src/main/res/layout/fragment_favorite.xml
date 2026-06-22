@@ -1,25 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:background="@color/background">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/ic_favorite"
-        app:tint="@color/brown"
-        xmlns:app="http://schemas.android.com/apk/res-auto" />
-
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- ===== HEADER ===== -->
+    <LinearLayout
+        android:id="@+id/header_favorite"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Belum ada kopi favorit"
-        android:textColor="@color/brown"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp"/>
+        android:orientation="vertical"
+        android:paddingTop="56dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="16dp"
+        android:background="@color/surface"
+        android:layout_alignParentTop="true">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Favorit Saya"
+            android:textColor="@color/text_primary"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_fav_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 coffee shop tersimpan"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            android:layout_marginTop="2dp" />
+    </LinearLayout>
+
+    <!-- ===== DAFTAR FAVORIT (RecyclerView) ===== -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_favorites"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header_favorite"
+        android:paddingTop="12dp"
+        android:paddingBottom="80dp"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        android:visibility="gone" />
+
+    <!-- ===== EMPTY STATE (tampil jika belum ada favorit) ===== -->
+    <LinearLayout
+        android:id="@+id/layout_empty_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header_favorite"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="40dp"
+        android:visibility="visible">
+
+        <!-- Ikon empty -->
+        <ImageView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/ic_favorite"
+            app:tint="#E0D4C8"
+            android:contentDescription="Belum ada favorit" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Belum ada coffee shop favorit"
+            android:textColor="@color/text_secondary"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tekan tombol ♥ Favorite di halaman detail\ncoffee shop untuk menyimpannya di sini."
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

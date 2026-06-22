@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+    <color name="black">#FF090504</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="splash_background">#121212</color>
-    <color name="brown">#A1887F</color> <!-- lighter brown for dark mode -->
-    <color name="light_brown">#D7CCC8</color>
-    <color name="cream">#1E1E1E</color> <!-- dark cream for dark mode surface -->
+    <color name="splash_background">#FF13100E</color>
+    <color name="brown">#D7CCC8</color>
+    <color name="light_brown">#A1887F</color>
+    <color name="cream">#FF1C1917</color>
     
     <!-- Theme specific colors -->
-    <color name="background">#121212</color>
-    <color name="surface">#1E1E1E</color>
-    <color name="text_primary">#FFFFFF</color>
-    <color name="text_secondary">#BDBDBD</color>
-    <color name="divider">#333333</color>
-    <color name="settings_bg">#121212</color>
+    <color name="background">#FF13100E</color>
+    <color name="surface">#FF1C1917</color>
+    <color name="text_primary">#FAFAF9</color>
+    <color name="text_secondary">#A8A29E</color>
+    <color name="divider">#292524</color>
+    <color name="settings_bg">#FF13100E</color>
+    <color name="chat_user_text">#FF1C1917</color>
+    <color name="home_header_bg">#291D16</color>
+    <color name="home_search_bg">#1F130E</color>
+    <color name="home_search_text">#FFFFFF</color>
+    <color name="home_search_hint">#8E7E76</color>
+    <color name="chip_active_bg">#FFFFFF</color>
+    <color name="chip_active_text">#FF13100E</color>
+    <color name="chip_inactive_bg">#FF13100E</color>
+    <color name="chip_inactive_border">#292524</color>
 </resources>

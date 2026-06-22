@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 
@@ -36,7 +37,7 @@ import okhttp3.Response;
 public class ChatbotBottomSheet extends BottomSheetDialogFragment {
 
     // Gemini API - Gratis via Google AI Studio
-    private static final String GEMINI_MODEL = "gemini-2.0-flash";
+    private static final String GEMINI_MODEL = "gemini-2.5-flash";
     private static final String GEMINI_API_URL =
             "https://generativelanguage.googleapis.com/v1beta/models/"
                     + GEMINI_MODEL + ":generateContent?key=";
@@ -60,9 +61,9 @@ public class ChatbotBottomSheet extends BottomSheetDialogFragment {
     private final JSONArray conversationHistory = new JSONArray();
 
     private final OkHttpClient httpClient = new OkHttpClient.Builder()
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .readTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
             .build();
 
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
@@ -91,16 +92,21 @@ public class ChatbotBottomSheet extends BottomSheetDialogFragment {
         rvMessages.setAdapter(adapter);
 
         // Welcome message
-        addBotMessage("Halo! ☕ Selamat datang di Monokrom Coffee! Saya Barista AI kamu. " +
-                "Ada yang bisa saya bantu? Mau cari rekomendasi kopi, atau punya pertanyaan seputar kopi?");
+        if (messages.isEmpty()) {
+            addBotMessage("Halo! ☕ Selamat datang di Monokrom Coffee! Saya Barista AI kamu. " +
+                    "Ada yang bisa saya bantu? Mau cari rekomendasi kopi, atau punya pertanyaan seputar kopi?");
+        }
 
         // Send button
         btnSend.setOnClickListener(v -> sendMessage());
 
-        // IME send action
+        // IME send action — hanya kirim saat tombol "Send" di keyboard ditekan
         etInput.setOnEditorActionListener((tv, actionId, event) -> {
-            sendMessage();
-            return true;
+            if (actionId == EditorInfo.IME_ACTION_SEND) {
+                sendMessage();
+                return true;
+            }
+            return false;
         });
     }
 
@@ -152,7 +158,24 @@ public class ChatbotBottomSheet extends BottomSheetDialogFragment {
             JSONObject generationConfig = new JSONObject();
             generationConfig.put("temperature", 0.7);
             generationConfig.put("maxOutputTokens", 1024);
+            generationConfig.put("topP", 0.95);
             requestBody.put("generationConfig", generationConfig);
+
+            // Safety settings - Kurangi filter agar lebih fleksibel
+            JSONArray safetySettings = new JSONArray();
+            String[] categories = {
+                "HARM_CATEGORY_HARASSMENT",
+                "HARM_CATEGORY_HATE_SPEECH",
+                "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                "HARM_CATEGORY_DANGEROUS_CONTENT"
+            };
+            for (String category : categories) {
+                JSONObject safety = new JSONObject();
+                safety.put("category", category);
+                safety.put("threshold", "BLOCK_ONLY_HIGH");
+                safetySettings.put(safety);
+            }
+            requestBody.put("safetySettings", safetySettings);
 
             String apiKey = BuildConfig.GEMINI_API_KEY;
             String url = GEMINI_API_URL + apiKey;
@@ -171,7 +194,7 @@ public class ChatbotBottomSheet extends BottomSheetDialogFragment {
                     mainHandler.post(() -> {
                         removeLastFromHistory();
                         removeLoadingAndAdd(loadingIndex,
-                                "😔 Maaf, gagal terhubung ke server. Periksa koneksi internet kamu ya.");
+                                "😔 Maaf, gagal terhubung ke server. Periksa koneksi internet kamu ya. (" + e.getMessage() + ")");
                         btnSend.setEnabled(true);
                     });
                 }
@@ -181,43 +204,55 @@ public class ChatbotBottomSheet extends BottomSheetDialogFragment {
                     String responseBody = response.body() != null ? response.body().string() : "";
                     mainHandler.post(() -> {
                         try {
+                            if (!response.isSuccessful()) {
+                                handleApiError(responseBody, loadingIndex);
+                                return;
+                            }
+
                             JSONObject json = new JSONObject(responseBody);
 
-                            if (json.has("candidates")) {
-                                // Parse Gemini response format
-                                String botText = json
-                                        .getJSONArray("candidates")
-                                        .getJSONObject(0)
-                                        .getJSONObject("content")
-                                        .getJSONArray("parts")
-                                        .getJSONObject(0)
-                                        .getString("text");
+                            if (json.has("candidates") && json.getJSONArray("candidates").length() > 0) {
+                                JSONObject candidate = json.getJSONArray("candidates").getJSONObject(0);
+                                
+                                if (candidate.has("content")) {
+                                    String botText = candidate
+                                            .getJSONObject("content")
+                                            .getJSONArray("parts")
+                                            .getJSONObject(0)
+                                            .getString("text");
 
-                                // Simpan balasan model ke history (role "model" untuk Gemini)
-                                JSONObject modelMsg = new JSONObject();
-                                modelMsg.put("role", "model");
-                                JSONArray modelParts = new JSONArray();
-                                JSONObject modelPart = new JSONObject();
-                                modelPart.put("text", botText);
-                                modelParts.put(modelPart);
-                                modelMsg.put("parts", modelParts);
-                                conversationHistory.put(modelMsg);
+                                    // Simpan balasan model ke history
+                                    JSONObject modelMsg = new JSONObject();
+                                    modelMsg.put("role", "model");
+                                    JSONArray modelParts = new JSONArray();
+                                    JSONObject modelPart = new JSONObject();
+                                    modelPart.put("text", botText);
+                                    modelParts.put(modelPart);
+                                    modelMsg.put("parts", modelParts);
+                                    conversationHistory.put(modelMsg);
 
-                                removeLoadingAndAdd(loadingIndex, botText);
+                                    removeLoadingAndAdd(loadingIndex, botText);
+                                } else {
+                                    // Kasus diblokir oleh safety filter
+                                    String finishReason = candidate.optString("finishReason", "UNKNOWN");
+                                    removeLastFromHistory();
+                                    removeLoadingAndAdd(loadingIndex, 
+                                        "⚠️ Wah, sepertinya pertanyaan itu tidak bisa saya jawab karena alasan keamanan (" + finishReason + "). Coba tanya yang lain yuk! ☕");
+                                }
 
                             } else if (json.has("error")) {
                                 removeLastFromHistory();
                                 String errMsg = json.getJSONObject("error").getString("message");
-                                removeLoadingAndAdd(loadingIndex, "⚠️ Error: " + errMsg);
+                                removeLoadingAndAdd(loadingIndex, "⚠️ API Error: " + errMsg);
                             } else {
                                 removeLastFromHistory();
                                 removeLoadingAndAdd(loadingIndex,
-                                        "🤔 Maaf, saya tidak bisa memproses permintaan itu sekarang.");
+                                        "🤔 Maaf, saya tidak bisa memberikan jawaban untuk saat ini.");
                             }
                         } catch (JSONException e) {
                             removeLastFromHistory();
                             removeLoadingAndAdd(loadingIndex,
-                                    "😔 Terjadi kesalahan saat memproses respons.");
+                                    "😔 Terjadi kesalahan saat memproses respons. " + e.getLocalizedMessage());
                         }
                         btnSend.setEnabled(true);
                     });
@@ -226,9 +261,22 @@ public class ChatbotBottomSheet extends BottomSheetDialogFragment {
 
         } catch (JSONException e) {
             removeLastFromHistory();
-            removeLoadingAndAdd(loadingIndex, "😔 Terjadi kesalahan. Coba lagi ya!");
+            removeLoadingAndAdd(loadingIndex, "😔 Terjadi kesalahan sistem. Coba lagi ya!");
             btnSend.setEnabled(true);
         }
+    }
+
+    private void handleApiError(String responseBody, int loadingIndex) {
+        removeLastFromHistory();
+        String message = "Gagal memproses permintaan.";
+        try {
+            JSONObject errorJson = new JSONObject(responseBody);
+            if (errorJson.has("error")) {
+                message = errorJson.getJSONObject("error").getString("message");
+            }
+        } catch (Exception ignored) {}
+        removeLoadingAndAdd(loadingIndex, "⚠️ Error: " + message);
+        btnSend.setEnabled(true);
     }
 
     // Hapus pesan terakhir dari history jika request gagal

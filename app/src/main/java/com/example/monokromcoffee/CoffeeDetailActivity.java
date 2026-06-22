@@ -3,20 +3,29 @@ package com.example.monokromcoffee;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoffeeDetailActivity extends AppCompatActivity {
+public class CoffeeDetailActivity extends AppCompatActivity
+        implements WriteReviewBottomSheet.OnReviewSubmittedListener {
 
     private ImageView btnBack, imgBanner;
     private TextView tvShopName, tvDescription, tvRating, tvReviewsCount, tvAddressSummary, tvAvgPrice;
     private Button btnAllMenu, btnHotCoffee, btnIceCoffee, btnNonCoffee, btnCancel, btnOke, btnFavoriteDetail;
+    private Button btnWriteReview;
+
+    // Section ulasan di halaman detail
+    private LinearLayout containerReviewsDetail, layoutNoReview;
+    private TextView tvReviewCountDetail;
 
     // Menu cards
     private CardView cardMenu1, cardMenu2, cardMenu3, cardMenu4, cardMenu5, cardMenu6, cardMenu7, cardMenu8, cardMenu9;
@@ -37,6 +46,18 @@ public class CoffeeDetailActivity extends AppCompatActivity {
 
     private int themeColor = Color.parseColor("#8B4513");
     private int themeTextColor = Color.WHITE;
+
+    // Favorite
+    private FavoriteManager favoriteManager;
+    private boolean isFavorited = false;
+
+    // Review
+    private ReviewManager reviewManager;
+
+    // Data per shop (dibutuhkan untuk menyimpan ke favorit & review)
+    private String shopRating = "";
+    private String shopAvgPrice = "";
+    private String shopAddress = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +85,12 @@ public class CoffeeDetailActivity extends AppCompatActivity {
         // Initialize views
         initializeViews();
 
+        // Initialize Favorite Manager
+        favoriteManager = new FavoriteManager(this);
+
+        // Initialize Review Manager
+        reviewManager = new ReviewManager(this);
+
         // Initialize menu lists
         initializeMenuLists();
 
@@ -75,6 +102,24 @@ public class CoffeeDetailActivity extends AppCompatActivity {
 
         // Set default button state (all shown)
         updateButtonStyles();
+
+        // Perbarui tampilan tombol favorit sesuai status tersimpan
+        refreshFavoriteButton();
+
+        // Perbarui tampilan tombol review sesuai status tersimpan
+        refreshReviewButton();
+
+        // Tampilkan ulasan untuk coffee shop ini
+        renderReviewsOnDetail();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Refresh ulasan setiap kali Activity kembali ke foreground
+        renderReviewsOnDetail();
+        refreshReviewButton();
+        refreshFavoriteButton();
     }
 
     private void initializeViews() {
@@ -89,6 +134,12 @@ public class CoffeeDetailActivity extends AppCompatActivity {
         btnCancel = findViewById(R.id.btn_cancel);
         btnOke = findViewById(R.id.btn_oke);
         btnFavoriteDetail = findViewById(R.id.btn_favorite_detail);
+        btnWriteReview = findViewById(R.id.btn_write_review);
+
+        // Section ulasan
+        containerReviewsDetail = findViewById(R.id.container_reviews_detail);
+        layoutNoReview         = findViewById(R.id.layout_no_review);
+        tvReviewCountDetail    = findViewById(R.id.tv_review_count_detail);
 
         // Menu cards (using include)
         cardMenu1 = findViewById(R.id.card_menu_1);
@@ -204,10 +255,6 @@ public class CoffeeDetailActivity extends AppCompatActivity {
             btnOke.setBackgroundTintList(ColorStateList.valueOf(themeColor));
             btnOke.setTextColor(themeTextColor);
         }
-        if (btnFavoriteDetail != null) {
-            btnFavoriteDetail.setBackgroundTintList(ColorStateList.valueOf(themeColor));
-            btnFavoriteDetail.setTextColor(themeTextColor);
-        }
         if (btnCancel != null) {
             btnCancel.setTextColor(themeColor);
         }
@@ -218,9 +265,12 @@ public class CoffeeDetailActivity extends AppCompatActivity {
         tvDescription.setText(
                 "Kenangan Coffee adalah coffee shop modern dengan konsep grab and go. Menyajikan berbagai jenis kopi berkualitas dengan harga terjangkau. Kenangan Coffee memiliki banyak cabang di Indonesia dan selalu ramai dikunjungi.");
         tvRating.setText(" 4.8");
-        tvReviewsCount.setText(" (2.5k (450 reviews))");
+        tvReviewsCount.setText(" (2.5k ulasan)");
         tvAddressSummary.setText("Jl. Senopati No. 34, Jakarta Selatan");
         tvAvgPrice.setText("Avg. Price: Rp 15k - 35k");
+        shopRating   = "4.8";
+        shopAvgPrice = "Rp 15k - 35k";
+        shopAddress  = "Jl. Senopati No. 34, Jakarta Selatan";
 
         // HOT COFFEE (Menu 1-3)
         imgMenu1.setImageResource(R.drawable.kenangan_americanohot);
@@ -267,9 +317,12 @@ public class CoffeeDetailActivity extends AppCompatActivity {
         tvDescription.setText(
                 "Starbucks adalah jaringan kedai kopi terbesar di dunia yang berasal dari Seattle, Amerika Serikat. Terkenal dengan kualitas kopi premium dan suasana nyaman untuk bekerja atau bersantai. Starbucks menyajikan berbagai varian kopi dan minuman lainnya.");
         tvRating.setText(" 4.9");
-        tvReviewsCount.setText(" (5.2k (1.2k reviews))");
+        tvReviewsCount.setText(" (5.2k ulasan)");
         tvAddressSummary.setText("Grand Indonesia, Jakarta Pusat");
         tvAvgPrice.setText("Avg. Price: Rp 45k - 80k");
+        shopRating   = "4.9";
+        shopAvgPrice = "Rp 45k - 80k";
+        shopAddress  = "Grand Indonesia, Jakarta Pusat";
 
         // HOT COFFEE (Menu 1-3)
         imgMenu1.setImageResource(R.drawable.starbuck_hotcappucino);
@@ -316,9 +369,12 @@ public class CoffeeDetailActivity extends AppCompatActivity {
         tvDescription.setText(
                 "Tomoro Coffee menawarkan kopi berkualitas tinggi dengan harga terjangkau. Fokus pada kualitas biji kopi pilihan dan pelayanan cepat. Tomoro Coffee memiliki konsep modern dan nyaman untuk bersantai atau bekerja.");
         tvRating.setText(" 4.7");
-        tvReviewsCount.setText(" (1.8k (320 reviews))");
+        tvReviewsCount.setText(" (1.8k ulasan)");
         tvAddressSummary.setText("Jl. Merdeka Barat No. 12, Jakarta Pusat");
         tvAvgPrice.setText("Avg. Price: Rp 12k - 25k");
+        shopRating   = "4.7";
+        shopAvgPrice = "Rp 12k - 25k";
+        shopAddress  = "Jl. Merdeka Barat No. 12, Jakarta Pusat";
 
         // HOT COFFEE (Menu 1-3)
         imgMenu1.setImageResource(R.drawable.tomoro_hotamericano);
@@ -365,9 +421,12 @@ public class CoffeeDetailActivity extends AppCompatActivity {
         tvDescription.setText(
                 "Janji Jiwa adalah brand kopi lokal Indonesia yang populer. Menyediakan berbagai varian kopi dengan cita rasa nusantara yang khas. Janji Jiwa memiliki banyak cabang dan selalu berinovasi dengan menu-menu baru.");
         tvRating.setText(" 4.6");
-        tvReviewsCount.setText(" (3.1k (890 reviews))");
+        tvReviewsCount.setText(" (3.1k ulasan)");
         tvAddressSummary.setText("Pondok Indah Mall, Jakarta Selatan");
         tvAvgPrice.setText("Avg. Price: Rp 15k - 30k");
+        shopRating   = "4.6";
+        shopAvgPrice = "Rp 15k - 30k";
+        shopAddress  = "Pondok Indah Mall, Jakarta Selatan";
 
         // HOT COFFEE (Menu 1-3)
         imgMenu1.setImageResource(R.drawable.janjijiwa_hothazelnut);
@@ -414,9 +473,12 @@ public class CoffeeDetailActivity extends AppCompatActivity {
         tvDescription.setText(
                 "Point Coffee menawarkan kopi specialty dengan biji kopi pilihan. Dikenal dengan barista profesional dan suasana cozy yang nyaman. Point Coffee fokus pada kualitas dan pengalaman minum kopi yang sempurna.");
         tvRating.setText(" 4.8");
-        tvReviewsCount.setText(" (2.2k (560 reviews))");
+        tvReviewsCount.setText(" (2.2k ulasan)");
         tvAddressSummary.setText("Jl. Wahid Hasyim No. 50, Jakarta Pusat");
         tvAvgPrice.setText("Avg. Price: Rp 20k - 40k");
+        shopRating   = "4.8";
+        shopAvgPrice = "Rp 20k - 40k";
+        shopAddress  = "Jl. Wahid Hasyim No. 50, Jakarta Pusat";
 
         // HOT COFFEE (Menu 1-3)
         imgMenu1.setImageResource(R.drawable.point_hotcappucino);
@@ -490,29 +552,29 @@ public class CoffeeDetailActivity extends AppCompatActivity {
 
                 if (shopName.equals("Kenangan Coffee")) {
                     imageResId = R.drawable.logo_kopikenangan;
-                    lat = "-6.223945";
-                    lng = "106.802113";
-                    address = "Jl. Senopati No. 34, Kebayoran Baru, Jakarta Selatan";
+                    lat = "-6.324831";
+                    lng = "107.143229";
+                    address = "Chadstone Mall Cikarang, Jl. Raya Cikarang - Cibarusah, Bekasi";
                 } else if (shopName.equals("Starbucks Coffee")) {
                     imageResId = R.drawable.logo_starbuck;
-                    lat = "-6.193132";
-                    lng = "106.823126";
-                    address = "Grand Indonesia, M.H. Thamrin, Jakarta Pusat";
+                    lat = "-6.342360";
+                    lng = "107.135450";
+                    address = "Citywalk Lippo Cikarang, Jl. MH. Thamrin, Cibatu, Cikarang Selatan, Bekasi";
                 } else if (shopName.equals("Tomoro Coffee")) {
                     imageResId = R.drawable.logo_tomoro;
-                    lat = "-6.175110";
-                    lng = "106.827153";
-                    address = "Jl. Merdeka Barat No. 12, Gambir, Jakarta Pusat";
+                    lat = "-6.284242";
+                    lng = "107.170664";
+                    address = "Ruko Hollywood Plaza, Jl. Hollywood Boulevard, Jababeka, Cikarang, Bekasi";
                 } else if (shopName.equals("Janji Jiwa Coffee")) {
                     imageResId = R.drawable.logo_janjijiwa;
-                    lat = "-6.241586";
-                    lng = "106.791558";
-                    address = "Pondok Indah Mall 1, Kebayoran Lama, Jakarta Selatan";
+                    lat = "-6.287232";
+                    lng = "107.161129";
+                    address = "Jl. Kasuari Raya, Jababeka II, Cikarang Baru, Bekasi";
                 } else if (shopName.equals("Point Coffee")) {
                     imageResId = R.drawable.logo_point;
-                    lat = "-6.188448";
-                    lng = "106.821952";
-                    address = "Jl. K.H. Wahid Hasyim No. 50, Menteng, Jakarta Pusat";
+                    lat = "-6.331448";
+                    lng = "107.140952";
+                    address = "Ruko Easton Commercial Center, Jl. Easton, Cikarang Selatan, Bekasi";
                 }
 
                 intent.putExtra("shop_image", imageResId);
@@ -527,14 +589,31 @@ public class CoffeeDetailActivity extends AppCompatActivity {
         btnFavoriteDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate back to MainActivity and open Favorite fragment
-                android.content.Intent intent = new android.content.Intent(CoffeeDetailActivity.this, MainActivity.class);
-                intent.putExtra("target_fragment", "favorite");
-                intent.setFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP | android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
-                finish();
+                CoffeeShop shop = buildCoffeeShop();
+                isFavorited = favoriteManager.toggleFavorite(shop);
+                refreshFavoriteButton();
+                String msg = isFavorited
+                        ? shopName + " ditambahkan ke favorit ♥"
+                        : shopName + " dihapus dari favorit";
+                Toast.makeText(CoffeeDetailActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
+
+        // Tulis Review button
+        if (btnWriteReview != null) {
+            btnWriteReview.setOnClickListener(v -> {
+                int logoRes;
+                switch (shopName) {
+                    case "Starbucks Coffee":  logoRes = R.drawable.logo_starbuck;    break;
+                    case "Tomoro Coffee":     logoRes = R.drawable.logo_tomoro;       break;
+                    case "Janji Jiwa Coffee": logoRes = R.drawable.logo_janjijiwa;   break;
+                    case "Point Coffee":      logoRes = R.drawable.logo_point;        break;
+                    default:                  logoRes = R.drawable.logo_kopikenangan; break;
+                }
+                WriteReviewBottomSheet.newInstance(shopName, logoRes)
+                        .show(getSupportFragmentManager(), "WriteReview");
+            });
+        }
 
         // All Menu button
         btnAllMenu.setOnClickListener(new View.OnClickListener() {
@@ -637,6 +716,159 @@ public class CoffeeDetailActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+    }
+
+    /** Callback dari WriteReviewBottomSheet setelah review berhasil disimpan */
+    @Override
+    public void onSubmitted(Review review) {
+        refreshReviewButton();
+        renderReviewsOnDetail(); // langsung tampilkan ulasan baru
+        Toast.makeText(this, "Ulasan tersimpan! ☕", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Membangun objek CoffeeShop dari data yang sudah dimuat di loadShopData().
+     */
+    private CoffeeShop buildCoffeeShop() {
+        int logoRes;
+        switch (shopName) {
+            case "Starbucks Coffee":  logoRes = R.drawable.logo_starbuck;    break;
+            case "Tomoro Coffee":     logoRes = R.drawable.logo_tomoro;       break;
+            case "Janji Jiwa Coffee": logoRes = R.drawable.logo_janjijiwa;   break;
+            case "Point Coffee":      logoRes = R.drawable.logo_point;        break;
+            default:                  logoRes = R.drawable.logo_kopikenangan; break;
+        }
+        return new CoffeeShop(shopName, logoRes, shopRating, shopAvgPrice, shopAddress);
+    }
+
+    /**
+     * Perbarui tampilan tombol Favorite:
+     * - sudah favorit → solid themeColor, teks "Favorit ♥"
+     * - belum         → outline, teks "Favorit"
+     */
+    private void refreshFavoriteButton() {
+        if (btnFavoriteDetail == null) return;
+        isFavorited = favoriteManager.isFavorite(shopName);
+        if (isFavorited) {
+            btnFavoriteDetail.setBackgroundTintList(ColorStateList.valueOf(themeColor));
+            btnFavoriteDetail.setTextColor(themeTextColor);
+            btnFavoriteDetail.setText("Favorit ♥");
+        } else {
+            btnFavoriteDetail.setBackgroundTintList(ColorStateList.valueOf(Color.TRANSPARENT));
+            btnFavoriteDetail.setTextColor(themeColor);
+            btnFavoriteDetail.setText("Favorit");
+            btnFavoriteDetail.setBackgroundResource(R.drawable.btn_pill_inactive);
+        }
+    }
+
+    /**
+     * Perbarui tampilan tombol Tulis Review:
+     * - sudah pernah review → "Edit Ulasan ✏"
+     * - belum               → "Tulis Ulasan"
+     */
+    private void refreshReviewButton() {
+        if (btnWriteReview == null) return;
+        boolean hasReview = reviewManager.hasReviewedShop(shopName);
+        btnWriteReview.setText(hasReview ? "Edit Ulasan ✏" : "Tulis Ulasan");
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // Render ulasan di halaman detail (dinamis ke LinearLayout)
+    // ─────────────────────────────────────────────────────────────────────────
+
+    /**
+     * Memuat dan menampilkan semua ulasan untuk coffee shop ini secara dinamis
+     * ke dalam containerReviewsDetail (LinearLayout di dalam ScrollView).
+     */
+    private void renderReviewsOnDetail() {
+        if (containerReviewsDetail == null || shopName == null) return;
+
+        // Hanya tampilkan ulasan untuk shop ini
+        List<Review> allReviews = reviewManager.getReviews();
+        List<Review> shopReviews = new ArrayList<>();
+        for (Review r : allReviews) {
+            if (r.getShopName().equals(shopName)) {
+                shopReviews.add(r);
+            }
+        }
+
+        // Bersihkan container sebelum render ulang
+        containerReviewsDetail.removeAllViews();
+
+        if (shopReviews.isEmpty()) {
+            containerReviewsDetail.setVisibility(View.GONE);
+            layoutNoReview.setVisibility(View.VISIBLE);
+            tvReviewCountDetail.setText("");
+        } else {
+            layoutNoReview.setVisibility(View.GONE);
+            containerReviewsDetail.setVisibility(View.VISIBLE);
+            tvReviewCountDetail.setText(shopReviews.size() + " ulasan");
+
+            for (Review review : shopReviews) {
+                View card = buildReviewCardView(review);
+                containerReviewsDetail.addView(card);
+            }
+        }
+    }
+
+    /**
+     * Membuat tampilan card untuk satu ulasan secara programmatic.
+     */
+    private View buildReviewCardView(Review review) {
+        // Inflate item_review.xml
+        View card = LayoutInflater.from(this)
+                .inflate(R.layout.item_review, containerReviewsDetail, false);
+
+        // Isi data
+        ImageView imgLogo    = card.findViewById(R.id.img_review_logo);
+        TextView  tvUsername = card.findViewById(R.id.tv_review_username);
+        TextView  tvShop     = card.findViewById(R.id.tv_review_shop_name);
+        TextView  tvComment  = card.findViewById(R.id.tv_review_comment);
+        TextView  tvDate     = card.findViewById(R.id.tv_review_date);
+        ImageView btnDelete  = card.findViewById(R.id.btn_delete_review);
+        ImageView star1      = card.findViewById(R.id.star_1);
+        ImageView star2      = card.findViewById(R.id.star_2);
+        ImageView star3      = card.findViewById(R.id.star_3);
+        ImageView star4      = card.findViewById(R.id.star_4);
+        ImageView star5      = card.findViewById(R.id.star_5);
+
+        // Pakai avatar placeholder (logo shop redundan — kita sudah di halaman shop itu)
+        imgLogo.setImageResource(R.drawable.ic_avatar_placeholder);
+        imgLogo.setColorFilter(getResources().getColor(R.color.light_brown, getTheme()));
+
+        // Nama user (bold, primer)
+        tvUsername.setText(review.getUserName() != null && !review.getUserName().isEmpty()
+                ? review.getUserName() : "Pengguna");
+        // Nama coffee shop disembunyikan di halaman detail (sudah tahu shop-nya)
+        tvShop.setVisibility(View.GONE);
+
+        tvComment.setText(review.getComment());
+        tvDate.setText(review.getDate());
+
+
+        // Render bintang
+        int activeColor   = Color.parseColor("#8B4513");
+        int inactiveColor = Color.parseColor("#E0E0E0");
+        ImageView[] stars = {star1, star2, star3, star4, star5};
+        for (int i = 0; i < stars.length; i++) {
+            stars[i].setColorFilter(i < review.getRating() ? activeColor : inactiveColor);
+        }
+
+        // Tombol hapus → hapus ulasan dan refresh tampilan
+        btnDelete.setOnClickListener(v -> {
+            reviewManager.removeReviewForShop(review.getShopName());
+            renderReviewsOnDetail();
+            refreshReviewButton();
+            Toast.makeText(this, "Ulasan dihapus", Toast.LENGTH_SHORT).show();
+        });
+
+        // Margin bawah antar card
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0, 0, 0, 16);
+        card.setLayoutParams(params);
+
+        return card;
     }
 }

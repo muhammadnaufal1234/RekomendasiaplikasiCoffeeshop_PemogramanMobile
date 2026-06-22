@@ -72,8 +72,8 @@ public class MapsActivity extends AppCompatActivity {
             map.getOverlayManager().getTilesOverlay().setColorFilter(org.osmdroid.views.overlay.TilesOverlay.INVERT_COLORS);
         }
 
-        double lat = -6.200000;
-        double lng = 106.816666;
+        double lat = -6.324831;
+        double lng = 107.143229;
 
         if (shopLat != null && shopLng != null) {
             try {

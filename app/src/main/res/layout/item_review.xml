@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Layout item review sederhana: Nama user + Bintang Rating + Teks ulasan -->
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="1dp"
+    app:cardBackgroundColor="@color/surface">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="14dp">
+
+        <!-- Nama pengguna (bold) -->
+        <TextView
+            android:id="@+id/tv_review_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/btn_delete_review"
+            android:text="Pengguna"
+            android:textColor="@color/brown"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <!-- 5 Bintang rating seperti Google Review -->
+        <LinearLayout
+            android:id="@+id/layout_stars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/tv_review_username"
+            android:layout_marginTop="4dp">
+
+            <ImageView android:id="@+id/star_1" android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/ic_star" android:contentDescription="star1"/>
+            <ImageView android:id="@+id/star_2" android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/ic_star" android:layout_marginStart="2dp" android:contentDescription="star2"/>
+            <ImageView android:id="@+id/star_3" android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/ic_star" android:layout_marginStart="2dp" android:contentDescription="star3"/>
+            <ImageView android:id="@+id/star_4" android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/ic_star" android:layout_marginStart="2dp" android:contentDescription="star4"/>
+            <ImageView android:id="@+id/star_5" android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/ic_star" android:layout_marginStart="2dp" android:contentDescription="star5"/>
+
+        </LinearLayout>
+
+        <!-- Teks ulasan -->
+        <TextView
+            android:id="@+id/tv_review_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_stars"
+            android:layout_toStartOf="@id/btn_delete_review"
+            android:text="Ulasan tampil di sini..."
+            android:textColor="@color/text_primary"
+            android:textSize="13sp"
+            android:lineSpacingExtra="3dp"
+            android:layout_marginTop="6dp" />
+
+        <!-- Tombol hapus (pojok kanan, kecil dan subtle) -->
+        <ImageView
+            android:id="@+id/btn_delete_review"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/ic_delete"
+            android:tint="#BDBDBD"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="3dp"
+            android:contentDescription="Hapus ulasan"/>
+
+        <!-- Field tersembunyi untuk kompabilitas Java code -->
+        <TextView android:id="@+id/tv_review_shop_name"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:visibility="gone" />
+        <TextView android:id="@+id/tv_review_date"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:visibility="gone" />
+        <ImageView android:id="@+id/img_review_logo"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:visibility="gone" android:contentDescription="logo" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

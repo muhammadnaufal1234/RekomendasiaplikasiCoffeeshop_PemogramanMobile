@@ -12,7 +12,7 @@
         android:layout_height="4dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="12dp"
-        android:background="#D4C4B0"
+        android:background="@color/divider"
         android:layout_marginBottom="0dp"/>
 
     <!-- Header -->
@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Barista AI"
-                android:textColor="#4E342E"
+                android:textColor="@color/brown"
                 android:textStyle="bold"
                 android:textSize="16sp"/>
 
@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Asisten virtual Monokrom Coffee"
-                android:textColor="#8D6E63"
+                android:textColor="@color/text_secondary"
                 android:textSize="12sp"/>
 
         </LinearLayout>
@@ -71,7 +71,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#E8DDD2"/>
+        android:background="@color/divider"/>
 
     <!-- Chat RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
@@ -89,7 +89,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#E8DDD2"
+        android:background="@color/divider"
         android:layout_marginTop="4dp"/>
 
     <!-- Input Row -->
@@ -112,12 +112,13 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:hint="Tanya barista AI..."
-            android:textColorHint="#B0A090"
-            android:textColor="#212121"
+            android:textColorHint="@color/text_secondary"
+            android:textColor="@color/text_primary"
             android:textSize="14sp"
-            android:inputType="textMultiLine"
-            android:maxLines="3"
+            android:inputType="textCapSentences"
+            android:maxLines="1"
             android:imeOptions="actionSend"
+            android:singleLine="true"
             android:importantForAutofill="no"/>
 
         <FrameLayout

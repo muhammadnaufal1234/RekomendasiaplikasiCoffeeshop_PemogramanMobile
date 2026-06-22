@@ -60,6 +60,10 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-auth")
 
+    // Glide - Image Loading
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+
     // Google Sign-In (v20.7.0 = last version with legacy GoogleSignIn/GoogleSignInClient API)
     implementation("com.google.android.gms:play-services-auth:20.7.0")
 

@@ -68,7 +68,7 @@
                     android:textColorHint="@color/text_secondary"
                     android:textColor="@color/text_primary"
                     android:textSize="15sp"
-                    android:fontFamily="serif"
+                    android:fontFamily="sans-serif"
                     android:inputType="textEmailAddress"
                     android:paddingStart="12dp"
                     android:paddingEnd="8dp"
@@ -102,7 +102,7 @@
                     android:textColorHint="@color/text_secondary"
                     android:textColor="@color/text_primary"
                     android:textSize="15sp"
-                    android:fontFamily="serif"
+                    android:fontFamily="sans-serif"
                     android:inputType="textPassword"
                     android:paddingStart="12dp"
                     android:paddingEnd="8dp"
@@ -120,6 +120,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:background="@drawable/bg_pill_brown_dark"
+                android:fontFamily="sans-serif-medium"
                 android:textAllCaps="false"
                 android:elevation="0dp"
                 android:layout_marginBottom="12dp" />
@@ -132,7 +133,7 @@
                 android:text="By tapping Continue, you agree to our Terms and\nacknowledge that you have read our Privacy Policy"
                 android:textColor="@color/text_secondary"
                 android:textSize="11sp"
-                android:fontFamily="serif"
+                android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:layout_marginBottom="20dp" />
 
@@ -156,7 +157,7 @@
                     android:text=" or Log in with "
                     android:textColor="@color/text_secondary"
                     android:textSize="13sp"
-                    android:fontFamily="serif"
+                    android:fontFamily="sans-serif"
                     android:paddingHorizontal="12dp" />
 
                 <View
@@ -204,7 +205,7 @@
                     android:text="Don't have an account yet? "
                     android:textColor="@color/text_secondary"
                     android:textSize="13sp"
-                    android:fontFamily="serif" />
+                    android:fontFamily="sans-serif" />
 
                 <TextView
                     android:id="@+id/tv_register"
@@ -214,7 +215,7 @@
                     android:textColor="@color/brown"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    android:fontFamily="serif" />
+                    android:fontFamily="sans-serif-medium" />
             </LinearLayout>
 
         </LinearLayout>

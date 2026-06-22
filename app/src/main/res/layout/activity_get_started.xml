@@ -64,10 +64,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="By Muhammad Nuafal"
+        android:text="By Muhammad Naufal"
         android:textColor="@color/text_secondary"
-        android:textSize="10sp"
-        android:fontFamily="serif"
+        android:textSize="11sp"
+        android:fontFamily="sans-serif-medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/coffee_icon" />
@@ -77,13 +77,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="40dp"
         android:gravity="center"
         android:text="Temukan coffee shop terbaik berdasarkan rating, lokasi, dan suasana"
         android:textColor="@color/brown"
         android:textSize="14sp"
-        android:fontFamily="serif"
+        android:fontFamily="sans-serif"
+        android:lineSpacingExtra="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_credit" />
@@ -101,11 +102,11 @@
 
         <ImageView
             android:id="@+id/location_icon"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_marginEnd="6dp"
             android:contentDescription="Lokasi"
-            android:src="@android:drawable/ic_menu_mylocation"
+            android:src="@drawable/ic_location_on"
             app:tint="@color/brown" />
 
         <TextView
@@ -115,7 +116,7 @@
             android:text="Mendeteksi lokasi..."
             android:textColor="@color/brown"
             android:textSize="14sp"
-            android:fontFamily="serif" />
+            android:fontFamily="sans-serif-medium" />
     </LinearLayout>
 
     <TextView
@@ -127,7 +128,7 @@
         android:textColor="@color/brown"
         android:textSize="14sp"
         android:textStyle="bold"
-        android:fontFamily="serif"
+        android:fontFamily="sans-serif-medium"
         app:layout_constraintBottom_toTopOf="@id/btn_get_started"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -144,6 +145,7 @@
         android:textColor="#ffffff"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:fontFamily="sans-serif-medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
